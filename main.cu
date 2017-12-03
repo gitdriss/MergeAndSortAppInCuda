@@ -152,6 +152,7 @@ intro();
   }
 
 //init Array
+printf("\n init Array A and B\n");
 printf("\n A : \n");
   for(int i=0;i<na;i++){
     T_in[i]=i;
@@ -167,28 +168,28 @@ printf("\n");
 //Cpu vers Gpu
   int error1 = cudaMemcpy(A, T_in, na*sizeof(int), cudaMemcpyHostToDevice);
   int error2 = cudaMemcpy(B, T_in+na, nb*sizeof(int), cudaMemcpyHostToDevice);
-  if(!error1)
+  if(error1)
     printf("error1 %d (Cpu vers Gpu)\n",error1);
-  if(!error2)
+  if(error2)
     printf("error2 %d (Cpu vers Gpu)\n",error2);
 
 //partitionning
   cudaEventRecord(start);
-printf("Call GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
+printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
   GPUpartitionning<<<NB,NTPB>>>(A, na, B, nb, C);
   cudaEventRecord(stop);
-printf("Call cudaDeviceSynchronize\n");
+printf("\nCall cudaDeviceSynchronize\n");
   cudaDeviceSynchronize();
 
 //Gpu vers cpu
   int error3 = cudaMemcpy(T_out, C, n*sizeof(int), cudaMemcpyDeviceToHost);
-  if(!error3)
+  if(error3)
     printf("error3 %d (Gpu vers cpu)\n",error3);
 
 //Time
   float milliseconds = 0;
   cudaEventElapsedTime(&milliseconds, start, stop);
-  printf("Time GPU : %f ms\n",milliseconds);
+  printf("\nTime GPU : %f ms\n",milliseconds);
 
 printf("\n T_in : \n");
   for(int i=0;i<n;i++){
