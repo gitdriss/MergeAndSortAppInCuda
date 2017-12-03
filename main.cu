@@ -16,8 +16,7 @@
 #define TAILLE 12
 
 //Fct Merge
-__host__ __device__ void merge(type* A, int na, int aid, type* B, int nb, int bid,
-  type* C, int cid, int load) {
+__host__ __device__ void merge(type* A, int na, int aid, type* B, int nb, int bid, type* C, int cid, int load) {
 
   for(int t=0; t<load; t++) {
     if(A[aid] < B[bid]) {
@@ -52,7 +51,7 @@ __global__ void GPUpartitionning(type* A, int na, type* B, int nb, type* C){
       if(A[a-1]<=B[b]){
         aid = a;
         bid = b;
-        break; //point trouvé !
+        break; //point trouve !
       }else{
         a_top = a-1;
         b_top = b+1;
