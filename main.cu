@@ -91,11 +91,13 @@ void intro(){
   system("clear");
   printf("Dans le cadre\n");
   printf("\n");
+  sleep(1);
   printf("N9-IPA PARALLELISME AVANCE HPCA\n");
   printf("Projet de fin de module\n");
   printf("\n");
+  sleep(1);
   printf("2017 - 2018\n");
-  sleep(3);
+  sleep(2);
 
   system("clear");
   printf("Supervisé par\n");
@@ -107,6 +109,7 @@ void intro(){
   printf("ALOUI Driss\n");
   printf("DO Alexandre\n");
   printf("\n");
+  sleep(1);
   printf("MAIN 5 Polytech Paris UPMC\n");
   sleep(2);
 
