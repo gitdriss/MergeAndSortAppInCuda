@@ -16,16 +16,17 @@
 #define TAILLE 12
 
 //Fct Merge
-__host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid, int* C, int cid, int load) {
+__host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid, int* C, int cid, int T) {
 
-  for(int t=0; t<load; t++) {
+  for(int i=0; i<T; i++) {
     if(A[aid] < B[bid]) {
-      C[cid+t] = A[aid];
+      C[cid+i] = A[aid];
       aid++;
     }else {
-      C[cid+t] = B[bid];
+      C[cid+i] = B[bid];
       bid++;
     }
+printf("C[%d]=%d\n",cid+i,C[cid+i]);
   }
 }
 
