@@ -150,7 +150,7 @@ printf("\n T_out %d : \n",n);
   for(int i=0;i<n;i++){
 printf("%d\t",T_out[i]);
   }
-
+printf("T_out[11]\n%d\n",T_out[11]);
 //free
   free(T_in);
   free(T_out);
