@@ -141,7 +141,12 @@ printf("\n T_in : \n");
 printf("%d\t",T_in[i]);
   }
 
-printf("\n T_out : \n");
+printf("\n T_out %d : \n",n);
+  for(int i=0;i<n-1;i++){
+printf("%d\t",T_out[i]);
+  }
+
+printf("\n T_out %d : \n",n);
   for(int i=0;i<n;i++){
 printf("%d\t",T_out[i]);
   }
