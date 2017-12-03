@@ -21,12 +21,13 @@ __host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid,
   for(int i=0; i<T; i++) {
     if(A[aid] < B[bid]) {
       C[cid+i] = A[aid];
+printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
       aid++;
     }else {
       C[cid+i] = B[bid];
+printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
       bid++;
     }
-printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
   }
 }
 
