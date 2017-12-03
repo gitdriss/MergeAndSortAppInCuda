@@ -136,11 +136,6 @@ printf("cudaDeviceSynchronize\n");
   cudaEventElapsedTime(&milliseconds, start, stop);
   printf("%f ms\n",milliseconds);
 
-printf("\n C : \n");
-  for(int i=0;i<n;i++){
-printf("%d\t",C[i]);
-  }
-
 printf("\n T_in : \n");
   for(int i=0;i<n;i++){
 printf("%d\t",T_in[i]);
