@@ -127,9 +127,59 @@ void intro(){
   system("clear");
 }
 
+
+//intro
+void introShort(){
+//INTRODUCTION
+  system("clear");
+  printf("Dans le cadre\n");
+  printf("\n");
+  printf("N9-IPA PARALLELISME AVANCE HPCA\n");
+  printf("Projet de fin de module\n");
+  printf("\n");
+  printf("2017 - 2018\n");
+  sleep(2);
+
+  system("clear");
+  printf("ALOUI Driss\n");
+  printf("DO Alexandre\n");
+  printf("\n");
+  sleep(2);
+
+  system("clear");
+  printf("Présente\n");
+  sleep(1);
+
+  system("clear");
+  printf("MergeAndSortAppInCuda\n");
+  sleep(1);
+
+  system("clear");
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+  system("clear");
+}
+
+
 //main
 int main(){
-intro();
+
+// Gestion de l intro
+  FILE* fichier = NULL;
+  fichier = fopen("tmp.txt", "r");
+
+  if (fichier == NULL){ // 1ere fois
+    intro();
+    FILE* fichier2 = NULL;
+    fichier2 = fopen("tmp.txt", "w");
+    fprintf(fichier2, "1");
+    fclose(fichier2);
+  }else{ // intro deja faite une fois)
+    fclose(fichier);
+    introShort();
+  }
 
   cudaEvent_t start, stop;
   cudaEventCreate ( &start );

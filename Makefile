@@ -9,7 +9,7 @@ exe: main.cu
 .PHONY: clean
 
 clean:
-	rm -f *.o exe
+	rm -f *.o exe tmp.txt
 
 exec:
 	./exe
