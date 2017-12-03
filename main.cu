@@ -120,6 +120,11 @@ void intro(){
   sleep(1);
 
   system("clear");
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+  system("clear");
 }
 
 //main
@@ -202,7 +207,11 @@ printf("\n T_out %d : \n",n);
 printf("%d\t",T_out[i]);
   }
 printf("\n");
-
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+  system("clear");
 printf("\nFree - End\n");
 //free
   free(T_in);
