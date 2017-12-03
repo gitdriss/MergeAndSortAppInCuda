@@ -82,9 +82,45 @@ printf("na %d aid %d nb %d bid %d index %d (na+nb)/(blockDim.x * gridDim.x) %d \
   merge(A, na, aid, B, nb, bid, C, index, (na+nb)/(blockDim.x * gridDim.x));
 }
 
+//intro
+void intro(){
+//INTRODUCTION
+  system("clear");
+  printf("Dans le cadre\n");
+  printf("\n");
+  printf("N9-IPA PARALLELISME AVANCE HPCA\n");
+  printf("Projet de fin de module\n");
+  printf("\n");
+  printf("2017 - 2018\n");
+  sleep(3);
+
+  system("clear");
+  printf("Supervisé par\n");
+  printf("\n");
+  printf("Lokman ABBAS TURKI\n");
+  sleep(2);
+
+  system("clear");
+  printf("ALOUI Driss\n");
+  printf("DO Alexandre\n");
+  printf("\n");
+  printf("MAIN 5 Polytech Paris UPMC\n");
+  sleep(2);
+
+  system("clear");
+  printf("Présente\n");
+  sleep(1);
+
+  system("clear");
+  printf("MergeAndSortAppInCuda\n");
+  sleep(1);
+
+  system("clear");
+}
 
 //main
 int main(){
+intro();
 
   cudaEvent_t start, stop;
   cudaEventCreate ( &start );
