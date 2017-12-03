@@ -1,5 +1,6 @@
 //19/10/17
 //ALOUI Driss
+//DO Alexandre
 //HPCA
 
 //Source : https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf
