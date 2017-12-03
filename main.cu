@@ -101,12 +101,12 @@ int main(){
   }
 
 //init Array
-printf("\n A : ");
+printf("\n A : \n");
   for(int i=0;i<na;i++){
     T_in[i]=i;
 printf("%d\t",T_in[i]);
   }
-printf("\n B : ");
+printf("\n B : \n");
   for(int i=na;i<n;i++){
     T_in[i]=i-na;
 printf("%d\t",T_in[i]);
@@ -136,17 +136,17 @@ printf("cudaDeviceSynchronize\n");
   cudaEventElapsedTime(&milliseconds, start, stop);
   printf("%f ms\n",milliseconds);
 
-printf("\n C : ");
+printf("\n C : \n");
   for(int i=0;i<n;i++){
 printf("%d\t",C[i]);
   }
 
-printf("\n T_in : ");
+printf("\n T_in : \n");
   for(int i=0;i<n;i++){
 printf("%d\t",T_in[i]);
   }
 
-printf("\n T_out : ");
+printf("\n T_out : \n");
   for(int i=0;i<n;i++){
 printf("%d\t",T_out[i]);
   }
