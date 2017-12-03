@@ -9,7 +9,9 @@
 #include <time.h>
 #include <cuda_runtime.h>
 #include <cuda.h>
-#include <Windows.h>
+#include <iostream>
+#include <fstream>
+#include <unistd.h>
 
 #define NB 1
 #define NTPB 4
