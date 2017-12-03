@@ -60,7 +60,6 @@ if(tid ==0) {
 }else{
 // binary search for diagonal intersectios
   while(true) {
-printf("offset %d a_top %d a_bot %d a %d b %d aid %d bid %d\n",offset,a_top,a_bot,a,b,aid,bid);
     offset = (a_top - a_bot) / 2;
     a = a_top - offset;
     b = b_top + offset;
@@ -80,8 +79,7 @@ printf("offset %d a_top %d a_bot %d a %d b %d aid %d bid %d\n",offset,a_top,a_bo
   }
 }
 // merge
-printf("merge\n");
-printf("na %d aid %d nb %d bid %d index %d (na+nb)/(blockDim.x * gridDim.x) %d \n", na, aid, nb, bid, index, (na+nb)/(blockDim.x * gridDim.x));
+printf("[%d] Call merge\n",tid);
   merge(A, na, aid, B, nb, bid, C, index, (na+nb)/(blockDim.x * gridDim.x));
 }
 
@@ -169,41 +167,39 @@ printf("\n");
 //Cpu vers Gpu
   int error1 = cudaMemcpy(A, T_in, na*sizeof(int), cudaMemcpyHostToDevice);
   int error2 = cudaMemcpy(B, T_in+na, nb*sizeof(int), cudaMemcpyHostToDevice);
-  printf("error1 %d (Cpu vers Gpu)\n",error1); // 0 donc bien
-  printf("error2 %d (Cpu vers Gpu)\n",error2);
+  if(!error1)
+    printf("error1 %d (Cpu vers Gpu)\n",error1);
+  if(!error2)
+    printf("error2 %d (Cpu vers Gpu)\n",error2);
 
 //partitionning
   cudaEventRecord(start);
-printf("GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
+printf("Call GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
   GPUpartitionning<<<NB,NTPB>>>(A, na, B, nb, C);
   cudaEventRecord(stop);
-printf("cudaDeviceSynchronize\n");
+printf("Call cudaDeviceSynchronize\n");
   cudaDeviceSynchronize();
 
 //Gpu vers cpu
   int error3 = cudaMemcpy(T_out, C, n*sizeof(int), cudaMemcpyDeviceToHost);
-  printf("error3 %d (Gpu vers cpu)\n",error3);
+  if(!error3)
+    printf("error3 %d (Gpu vers cpu)\n",error3);
 
 //Time
   float milliseconds = 0;
   cudaEventElapsedTime(&milliseconds, start, stop);
-  printf("%f ms\n",milliseconds);
+  printf("Time GPU : %f ms\n",milliseconds);
 
 printf("\n T_in : \n");
   for(int i=0;i<n;i++){
 printf("%d\t",T_in[i]);
   }
 
-printf("\n T_out %d : \n",n);
-  for(int i=0;i<n-1;i++){
-printf("%d\t",T_out[i]);
-  }
 
 printf("\n T_out %d : \n",n);
   for(int i=0;i<n;i++){
 printf("%d\t",T_out[i]);
   }
-printf("\nT_out[11] %d\n",T_out[11]);
 //free
   free(T_in);
   free(T_out);
