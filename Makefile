@@ -4,7 +4,7 @@ CC=nvcc
 CFLAGS= -std=c++11
 
 exe: main.cu
-	$(CC) -L./lib $(CFLAGS) $^ -o $@
+	$(CC) -L./lib $(CFLAGS) -o $@ $^
 
 .PHONY: clean
 
