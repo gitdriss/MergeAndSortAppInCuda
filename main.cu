@@ -26,7 +26,7 @@ __host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid,
       C[cid+i] = B[bid];
       bid++;
     }
-printf("C[%d]=%d\n",cid+i,C[cid+i]);
+printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
   }
 }
 
