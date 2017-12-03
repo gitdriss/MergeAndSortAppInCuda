@@ -32,15 +32,18 @@ __host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid,
 //Fct GPU partitionning
 __global__ void GPUpartitionning(int* A, int na, int* B, int nb, int* C){
   int a, b, offset;
-  int aid = 0;
-  int bid = 0;
+  int aid;
+  int bid;
 
   int tid = blockIdx.x*blockDim.x+threadIdx.x;// identifiant de thread
   int index = tid*(na+nb)/(blockDim.x * gridDim.x);// index de debut dans C
   int a_top = (index>na)? na:index;
   int b_top = (index>na)? index-na:0;
   int a_bot = b_top;
-
+if(tid ==0) {
+  aid = 0;
+  bid = 0;
+}else{
 // binary search for diagonal intersectios
   while(true) {
 printf("offset %d a_top %d a_bot %d a %d b %d aid %d bid %d\n",offset,a_top,a_bot,a,b,aid,bid);
@@ -61,6 +64,7 @@ printf("offset %d a_top %d a_bot %d a %d b %d aid %d bid %d\n",offset,a_top,a_bo
       a_bot = a+1;
     }
   }
+}
 // merge
 printf("merge\n");
 printf("na %d aid %d nb %d bid %d index %d (na+nb)/(blockDim.x * gridDim.x) %d \n", na, aid, nb, bid, index, (na+nb)/(blockDim.x * gridDim.x));
