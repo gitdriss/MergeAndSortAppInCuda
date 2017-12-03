@@ -43,6 +43,7 @@ __global__ void GPUpartitionning(int* A, int na, int* B, int nb, int* C){
 
 // binary search for diagonal intersectios
   while(true) {
+printf("offset %d a_top %d a_bot %d a %d b %d aid %d bid %d\n",offset,a_top,a_bot,a,b,aid,bid);
     offset = (a_top - a_bot) / 2;
     a = a_top - offset;
     b = b_top + offset;
@@ -61,6 +62,8 @@ __global__ void GPUpartitionning(int* A, int na, int* B, int nb, int* C){
     }
   }
 // merge
+printf("merge\n");
+printf("na %d aid %d nb %d bid %d index %d (na+nb)/(blockDim.x * gridDim.x) %d \n", na, aid, nb, bid, index, (na+nb)/(blockDim.x * gridDim.x));
   merge(A, na, aid, B, nb, bid, C, index, (na+nb)/(blockDim.x * gridDim.x));
 }
 
@@ -76,8 +79,8 @@ int main(){
 //Alloc Array
   // cpu
   int n = TAILLE;
-  int* cpu_v = (int*)malloc(n*sizeof(int));
-  int* out = (int*)malloc(n*sizeof(int));
+  int* T_in = (int*)malloc(n*sizeof(int));
+  int* T_out = (int*)malloc(n*sizeof(int));
 
   // gpu
   int na = int(n/2);
@@ -94,27 +97,34 @@ int main(){
   }
 
 //init Array
+printf("\n A : ");
   for(int i=0;i<na;i++){
-    cpu_v[i]=i;
+    T_in[i]=i;
+printf("%d\t",T_in[i]);
   }
+printf("\n B : ");
   for(int i=na;i<n;i++){
-    cpu_v[i]=i-na;
+    T_in[i]=i-na;
+printf("%d\t",T_in[i]);
   }
+printf("\n");
 
 //Cpu vers Gpu
-  int error1 = cudaMemcpy(A, cpu_v, na*sizeof(int), cudaMemcpyHostToDevice);
-  int error2 = cudaMemcpy(B, cpu_v+na, nb*sizeof(int), cudaMemcpyHostToDevice);
+  int error1 = cudaMemcpy(A, T_in, na*sizeof(int), cudaMemcpyHostToDevice);
+  int error2 = cudaMemcpy(B, T_in+na, nb*sizeof(int), cudaMemcpyHostToDevice);
   printf("error1 %d (Cpu vers Gpu)\n",error1); // 0 donc bien
   printf("error2 %d (Cpu vers Gpu)\n",error2);
 
 //partitionning
   cudaEventRecord(start);
+printf("GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
   GPUpartitionning<<<NB,NTPB>>>(A, na, B, nb, C);
   cudaEventRecord(stop);
+printf("cudaDeviceSynchronize\n");
   cudaDeviceSynchronize();
 
 //Gpu vers cpu
-  int error3 = cudaMemcpy(out, C, n*sizeof(int), cudaMemcpyDeviceToHost);
+  int error3 = cudaMemcpy(T_out, C, n*sizeof(int), cudaMemcpyDeviceToHost);
   printf("error3 %d (Gpu vers cpu)\n",error3);
 
 //Time
@@ -123,8 +133,8 @@ int main(){
   printf("%f ms\n",milliseconds);
 
 //free
-  free(cpu_v);
-  free(out);
+  free(T_in);
+  free(T_out);
   cudaFree(A);
   cudaFree(B);
   cudaFree(C);
