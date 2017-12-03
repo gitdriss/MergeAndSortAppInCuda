@@ -19,14 +19,22 @@
 __host__ __device__ void merge(int* A, int na, int aid, int* B, int nb, int bid, int* C, int cid, int T) {
 
   for(int i=0; i<T; i++) {
-    if(A[aid] < B[bid]) {
-      C[cid+i] = A[aid];
-printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
-      aid++;
-    }else {
-      C[cid+i] = B[bid];
-printf("C[%d]=%d %d %d\n",cid+i,C[cid+i],A[aid],B[bid]);
-      bid++;
+    if(aid<na && bid<nb) {
+      if(A[aid] < B[bid]) {
+        C[cid+i] = A[aid];
+        aid++;
+      }else {
+        C[cid+i] = B[bid];
+        bid++;
+      }
+    }else{ // Pour derniers indices (reste plus q un tableau)
+      if(aid<na){
+        C[cid+i] = A[aid];
+        aid++;
+      }else{
+        C[cid+i] = B[bid];
+        bid++;
+      }
     }
   }
 }
