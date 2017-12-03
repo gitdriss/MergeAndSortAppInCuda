@@ -203,7 +203,7 @@ printf("%d\t",T_out[i]);
   }
 printf("\n");
 
-printf("\n Free \n");
+printf("\nFree - End\n");
 //free
   free(T_in);
   free(T_out);
