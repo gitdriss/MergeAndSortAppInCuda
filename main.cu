@@ -138,8 +138,19 @@ printf("cudaDeviceSynchronize\n");
 
 printf("\n C : ");
   for(int i=0;i<n;i++){
+printf("%d\t",C[i]);
+  }
+
+printf("\n T_in : ");
+  for(int i=0;i<n;i++){
+printf("%d\t",T_in[i]);
+  }
+
+printf("\n T_out : ");
+  for(int i=0;i<n;i++){
 printf("%d\t",T_out[i]);
   }
+
 //free
   free(T_in);
   free(T_out);
