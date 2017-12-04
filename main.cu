@@ -311,7 +311,7 @@ void introShort(){
 
 //2 Test sur tableau random
 void tabRandom(){
-
+  int x;
   int Entree = 0;
   int Erreur = 0;
   while(Entree == 0){
@@ -417,7 +417,8 @@ printf("\n");
 
 
 void sousMenu(){
- int Entree = 0;
+  int x;
+  int Entree = 0;
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
@@ -503,7 +504,7 @@ void sousMenu(){
 }
 
 void menuPrincipal(){
-
+  int x;
   int Entree = 0;
   int Erreur = 0;
   while(Entree == 0){
