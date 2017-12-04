@@ -478,11 +478,11 @@ int sousMenu(){
       std::cout<<""<<std::endl;
       std::cout<<""<<std::endl;
       std::cout<<""<<std::endl;
-      char s;
-      printf("Vous avez entrez %d\n", x);
+      sleep(2);
+      char sh;
       printf("Press enter to continue\n");
-      s=getchar();
-      putchar(s);
+      sh=getchar();
+      putchar(sh);
       break;  
     case 2:  
       // Test sur tableau random
@@ -566,11 +566,11 @@ void menuPrincipal(){
       std::cout<<""<<std::endl;
       std::cout<<""<<std::endl;
       std::cout<<""<<std::endl;
-      char s;
-      printf("Vous avez entrez %d\n", x);
+      sleep(2);
+      char sh;
       printf("Press enter to continue\n");
-      s=getchar();
-      putchar(s);
+      sh=getchar();
+      putchar(sh);
       break;  
     case 2:  
       if(sousMenu()==2)
