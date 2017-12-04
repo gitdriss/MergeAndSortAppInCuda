@@ -10,11 +10,12 @@
 #include <cuda_runtime.h>
 #include <cuda.h>
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <string>
 
 #define NB 1
 #define NTPB 4
@@ -413,9 +414,119 @@ printf("\n");
 }
 
 //3 Lecture à partir d'un fichier
+void tabFile(){
+  std::ifstream file;
+  std::string x;
+  int Entree = 0;
+  int Erreur = 0;
+  while(Entree == 0){
+    system("clear");
+    std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
 
+    if(Erreur == 1){
+      std::cout<<"[Erreur] Entrée non valide ! Le fichier doit se trouver dans le repertoire courant ex : exemple.txt et il doit utiliser des ';' en séparateur"<<std::endl;
+      Erreur  =  0;
+    }
+    std::cout<<"Entrez le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
+    std::cin>>x;
+    while (getchar() != '\n'); //vide le buffer de saisie
+    file.open(x);
+    if(file.is_open()){
+      char s;
+      std::cout<<"Vous avez entrez "<<x<<std::endl;
+      printf("Press enter to continue\n");
+      s=getchar();
+      putchar(s);
+      Entree == 1
+    }else{
+      Erreur  =  1;
+    }
+  }
+
+//ouverture fichier
+
+//lecture fichier
+  int num;
+  std::vector<int> tab;
+  while (file >> num) { tab.push_back(num); }
+
+  int n = tab.size();
+
+// var pour timer
+  cudaEvent_t startCPU, stopCPU;
+  cudaEventCreate ( &startCPU );
+  cudaEventCreate ( &stopCPU );
+  cudaEvent_t startGPU, stopGPU;
+  cudaEventCreate ( &startGPU );
+  cudaEventCreate ( &stopGPU );
+
+//Alloc Array
+printf("Alloc Array\n");
+  srand(time(NULL));
+  int* T_cpu = (int*)malloc(n*sizeof(int));
+  int* T_gpu = (int*)malloc(n*sizeof(int));
+  int cpt=0;
+
+//init Array
+printf("\nInit Array\n");
+  while (cpt<n){
+    T_gpu[cpt]= tab[cpt];
+    T_cpu[cpt] = tab[cpt];
+    cpt++;
+  }
+printf("\n");
+
+//sort CPU
+printf("\nCall sort CPU\n");
+  cudaEventRecord(startCPU);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  cudaEventRecord(stopCPU);
+printf("\n");
+//sort GPU
+printf("\nCall sort GPU\n");
+  cudaEventRecord(startGPU);
+  mergeAndSortRecuCPU(T_cpu, n);
+  cudaEventRecord(stopGPU);
+printf("Call cudaDeviceSynchronize\n");
+  cudaDeviceSynchronize();
+
+//test tri ok?
+printf("\nTest tri\n");
+  if(is_sorted(T_cpu, n)){
+    printf("OK\n");
+  //Fct test egale
+printf("Test egale\n");
+    if(is_equal(T_cpu, T_gpu, n))
+      printf("OK\n");
+    else
+      printf("[error] T_gpu mal trie");
+  }else{
+    printf("[error] T_cpu mal trie");   
+  }
+
+//Time resuts
+printf("\nTime resuts\n");
+  float millisecondsGPU = 0;
+  cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
+  printf("\nTime GPU : %f ms\n",millisecondsGPU);
+  float millisecondsCPU = 0;
+  cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
+  printf("Time CPU : %f ms\n",millisecondsCPU);
+
+printf("\n");
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+
+//free
+  free(T_cpu);
+  free(T_gpu);
+}
 //4 Exemple d'application donnee automobile
+void tabCars(){
 
+}
 
 int sousMenu(){
   int x;
@@ -493,11 +604,11 @@ int sousMenu(){
         break;
       case 3:  
       // Lecture à partir d'un fichier
-
+        tabFile();
         break;
       case 4:  
       // Exemple d'application donnee automobile
-
+        tabCars();
         break;
       case 5:  
         Entree = 1;
