@@ -25,8 +25,8 @@
 #include <math.h>
 #include <string>
 
-#define NB 1
-#define NTPB 16
+#define NB 1024
+#define NTPB 1024
 #define N NTPB*NB
 
 #define TAILLE 13
