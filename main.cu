@@ -345,6 +345,12 @@ printf("\nInit Array\n");
   }
 printf("\n");
 
+ printf("\n T_cpu %d : \n",n);
+   for(int i=0;i<n;i++){
+  printf("%d\t",T_cpu[i]);
+    }
+  printf("\n");
+
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
@@ -385,6 +391,11 @@ printf("\nTime resuts\n");
  printf("\n T_gpu %d : \n",n);
    for(int i=0;i<n;i++){
   printf("%d\t",T_gpu[i]);
+    }
+  printf("\n");
+ printf("\n T_cpu %d : \n",n);
+   for(int i=0;i<n;i++){
+  printf("%d\t",T_cpu[i]);
     }
   printf("\n");
 
