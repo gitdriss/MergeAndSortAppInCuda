@@ -164,7 +164,7 @@ printf("[%d] Call merge\n",tid);
 }
 
 // Fct Merge and sort pour GPU
-void mergeAndSortRecuGPU(float T[], int i_debut, int i_fin, int blockSize)
+void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin, int blockSize)
 {
   int n = i_fin - i_debut;
   if (n < GRAIN){
@@ -299,6 +299,7 @@ void introShort(){
 
 //main
 int main(){
+ int n = TAILLE;
 
 // Gestion de l intro
   FILE* fichier = NULL;
@@ -342,7 +343,7 @@ printf("\n");
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
-  mergeAndSortRecuGPU(T_gpu, 0, n-1, blockSize);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
   cudaEventRecord(stopCPU);
 printf("\n");
 //sort GPU
