@@ -20,7 +20,7 @@
 #define NTPB 4
 #define N NTPB*NB
 
-#define TAILLE 12
+#define TAILLE 120
 #define GRAIN 10
 
 //Fct test tri
