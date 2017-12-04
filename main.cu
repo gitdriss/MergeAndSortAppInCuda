@@ -25,18 +25,18 @@
 
 //Fct test tri
 bool is_sorted(int* array, int n) {
-	for(int i=0; i<n-1; i++) {
-		if(array[i]>array[i+1]) return false;
-	}
-	return true;
+  for(int i=0; i<n-1; i++) {
+    if(array[i]>array[i+1]) return false;
+  }
+  return true;
 }
 
 //Fct test egale
 bool is_equal(int* array1, int* array2, int n) {
-	for(int i=0; i<n-1; i++) {
-		if(array1[i]!=array2[i]) return false;
-	}
-	return true;
+  for(int i=0; i<n-1; i++) {
+    if(array1[i]!=array2[i]) return false;
+  }
+  return true;
 }
 
 //Fct Merge CPU.
@@ -83,23 +83,19 @@ void mergeAndSortRecuCPU(int *A,int n) {
 
 //Fct Pgcd (pour la gestion du nombre de thread)
 // Source : https://openclassrooms.com/forum/sujet/algorithme-de-calcul-de-pgcd-20803
-int get_pgcd(int a, int b)
-{
-    int pgcd = 0;
- 
-    while(1)
-    {
-        pgcd = a % b;
-        if(pgcd == 0)
-        {
-            pgcd = b;
-            break;
-        }
-        a = b;
-        b = pgcd;
-    }
- 
-    return pgcd;
+int get_pgcd(int a, int b){
+
+  int pgcd = 0;
+  while(1){
+    pgcd = a % b;
+      if(pgcd == 0){
+        pgcd = b;
+        break;
+      }
+    a = b;
+    b = pgcd;
+  }
+  return pgcd;
 }
 
 
@@ -170,14 +166,14 @@ printf("[%d] Call merge\n",tid);
 // Fct Merge and sort pour GPU
 void mergeAndSortRecuGPU(float T[], int i_debut, int i_fin, int blockSize)
 {
-
-  if (i_debut < i_fin - GRAIN){
+  int n = i_fin - i_debut;
+  if (n < GRAIN){
 
     int i_milieu = i_debut + (i_fin - i_debut) / 2;
 
     int na = 1 + i_milieu - i_debut;
     int nb = i_fin - i_milieu;
-
+    
     mergeAndSortRecuGPU(T, i_debut, i_milieu, blockSize);
     mergeAndSortRecuGPU(T, i_milieu+1, i_fin,blockSize);
   
@@ -216,7 +212,7 @@ printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
 
   }else{
   //tri
-    mergeAndSortRecuCPU(T, i_fin - i_debut);
+    mergeAndSortRecuCPU(T, n);
   }
 }
 
@@ -319,10 +315,13 @@ int main(){
     introShort();
   }
 
-  cudaEvent_t start, stop;
-  cudaEventCreate ( &start );
-  cudaEventCreate ( &stop );
-
+// var pour timer
+  cudaEvent_t startCPU, stopCPU;
+  cudaEventCreate ( &startCPU );
+  cudaEventCreate ( &stopCPU );
+  cudaEvent_t startGPU, stopGPU;
+  cudaEventCreate ( &startGPU );
+  cudaEventCreate ( &stopGPU );
 
 //Alloc Array
 printf("Alloc Array\n");
@@ -335,7 +334,7 @@ printf("Alloc Array\n");
 printf("\nInit Array\n");
   while (cpt<n){
     T_gpu[cpt]=(rand()%100);
-    T_cpu[cpt] = T_gpu[cpt]
+    T_cpu[cpt] = T_gpu[cpt];
     cpt++;
   }
 printf("\n");
@@ -385,12 +384,10 @@ printf("\n");
   putchar(s);
   system("clear");
 printf("\nFree - End\n");
+
 //free
-  free(T_in);
-  free(T_out);
-  cudaFree(A);
-  cudaFree(B);
-  cudaFree(C);
+  free(T_cpu);
+  free(T_gpu);
 
 // return 0
   return 0;
