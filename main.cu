@@ -401,7 +401,7 @@ printf("Test egale\n");
   }
 
 //Time resuts
-printf("\nTime resuts\n");
+printf("\nTime results\n");
   float millisecondsGPU = 0;
   cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
   printf("\nTime GPU : %f ms\n",millisecondsGPU);
@@ -515,7 +515,7 @@ printf("Test egale\n");
   }
 
 //Time resuts
-printf("\nTime resuts\n");
+printf("\nTime results\n");
   float millisecondsGPU = 0;
   cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
   printf("\nTime GPU : %f ms\n",millisecondsGPU);
@@ -535,7 +535,160 @@ printf("\n");
 }
 //4 Exemple d'application donnee automobile
 void tabCars(){
+  std::ifstream file;
+  int x;
+  int Entree = 0;
+  int Erreur = 0;
+  while(Entree == 0){
+    system("clear");
+    std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
+    std::cout<<"0\ttop 10 Prix"<<std::endl;
+    std::cout<<"1\ttop 10 Km"<<std::endl;
+    if(Erreur == 1){
+      std::cout<<"[Erreur] Entrée non valide ! choisir une option 1 ou 2"<<std::endl;
+      Erreur  =  0;
+    }
+    if(Erreur == 2){
+      std::cout<<"[Erreur] Fichier price.txt manquant! Lancer le script doc.py"<<std::endl;
+      Erreur  =  0;
+    }
+    if(Erreur == 3){
+      std::cout<<"[Erreur] Fichier kilometer.txt manquant! Lancer le script doc.py"<<std::endl;
+      Erreur  =  0;
+    }
+    std::cout<<"Entrez le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
+    std::cin>>x;
+    while (getchar() != '\n'); //vide le buffer de saisie
+    if(x==0){
+      file.open("price.txt");//ouverture fichier
+      if(file.is_open()){
+        char s;
+        std::cout<<"Vous avez entrez "<<x<<std::endl;
+        printf("Press enter to continue\n");
+        s=getchar();
+        putchar(s);
+        Entree = 1;
+      }else{
+        Erreur  =  2;
+      }
+    }else{
+      if(x==1){
+        file.open("kilometer.txt");//ouverture fichier
+        if(file.is_open()){
+          char s;
+          std::cout<<"Vous avez entrez "<<x<<std::endl;
+          printf("Press enter to continue\n");
+          s=getchar();
+          putchar(s);
+          Entree = 2;
+        }else{
+          Erreur  =  3;
+        }
+      }else{
+        Erreur  =  1; //mauvais choix
+      }
+    }
+  }
 
+
+//lecture fichier
+printf("Lecture fichier...\n");
+  int num;
+  std::vector<int> tab;
+  while (file >> num) { tab.push_back(num); }
+
+  int n = tab.size();
+printf("%d elements lues\n",n);
+
+// var pour timer
+  cudaEvent_t startCPU, stopCPU;
+  cudaEventCreate ( &startCPU );
+  cudaEventCreate ( &stopCPU );
+  cudaEvent_t startGPU, stopGPU;
+  cudaEventCreate ( &startGPU );
+  cudaEventCreate ( &stopGPU );
+
+//Alloc Array
+printf("Alloc Array\n");
+  srand(time(NULL));
+  int* T_cpu = (int*)malloc(n*sizeof(int));
+  int* T_gpu = (int*)malloc(n*sizeof(int));
+  int cpt=0;
+
+//init Array
+printf("\nInit Array\n");
+  while (cpt<n){
+    T_gpu[cpt]= tab[cpt];
+    T_cpu[cpt] = tab[cpt];
+    cpt++;
+  }
+printf("\n");
+
+//sort CPU
+printf("\nCall sort CPU\n");
+  cudaEventRecord(startCPU);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  cudaEventRecord(stopCPU);
+printf("\n");
+//sort GPU
+printf("\nCall sort GPU\n");
+  cudaEventRecord(startGPU);
+  mergeAndSortRecuCPU(T_cpu, n);
+  cudaEventRecord(stopGPU);
+printf("Call cudaDeviceSynchronize\n");
+  cudaDeviceSynchronize();
+
+//test tri ok?
+printf("\nTest tri\n");
+  if(is_sorted(T_cpu, n)){
+    printf("OK\n");
+  //Fct test egale
+printf("Test egale\n");
+    if(is_equal(T_cpu, T_gpu, n))
+      printf("OK\n");
+    else
+      printf("[error] T_gpu mal trie");
+  }else{
+    printf("[error] T_cpu mal trie");   
+  }
+
+//Time resuts
+printf("\nTime results\n");
+  float millisecondsGPU = 0;
+  cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
+  printf("\nTime GPU : %f ms\n",millisecondsGPU);
+  float millisecondsCPU = 0;
+  cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
+  printf("Time CPU : %f ms\n",millisecondsCPU);
+printf("\n");
+  if(Entree == 1){//price
+  printf("\nTop 10 des prix les plus eleves des voitures:\n");
+    cpt = n - 10
+    while (cpt<n){
+      printf("[%d] %d Euros\n",cpt+10-n,T_gpu[cpt]);
+      cpt++;
+    }
+   printf("\n");
+  }
+  if(Entree == 2){//kilometer
+  printf("\nTop 10 des voitures les plus durables :\n");
+    cpt = n - 10
+    while (cpt<n){
+      printf("[%d] %d Km\n",cpt+10-n,T_gpu[cpt]);
+      cpt++;
+    }
+   printf("\n");
+  }
+
+printf("\n");
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+
+//free
+  free(T_cpu);
+  free(T_gpu);
 }
 
 int sousMenu(){
