@@ -167,6 +167,13 @@ printf("[%d] Call merge\n",tid);
 void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin, int blockSize)
 {
   int n = i_fin - i_debut;
+printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize);
+ printf("\n T %d : \n",n);
+   for(int i=0;i<n;i++){
+  printf("%d\t",T[i]);
+    }
+  printf("\n");
+
   if (n < GRAIN){
 
     int i_milieu = i_debut + (i_fin - i_debut) / 2;
