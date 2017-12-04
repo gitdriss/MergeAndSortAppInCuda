@@ -325,7 +325,7 @@ void tabRandom(){
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
-    std::cout<<"2\tTest sur tableau random"<<std::endl;
+    std::cout<<"Test sur tableau random"<<std::endl;
 
     if(Erreur == 1){
       std::cout<<"[Erreur] Entrée non valide ! (entier positif)"<<std::endl;
@@ -429,7 +429,7 @@ void tabFile(){
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
-    std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
+    std::cout<<"Lecture à partir d'un fichier"<<std::endl;
 
     if(Erreur == 1){
       std::cout<<"[Erreur] Entrée non valide ! Le fichier doit se trouver dans le repertoire courant ex : exemple.txt et il doit utiliser des ';' en séparateur"<<std::endl;
@@ -541,7 +541,7 @@ void tabCars(){
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
-    std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
+    std::cout<<"Exemple d'application donnee automobile"<<std::endl;
     std::cout<<"0\ttop 10 Prix"<<std::endl;
     std::cout<<"1\ttop 10 Km"<<std::endl;
     if(Erreur == 1){
@@ -556,7 +556,7 @@ void tabCars(){
       std::cout<<"[Erreur] Fichier kilometer.txt manquant! Lancer le script doc.py"<<std::endl;
       Erreur  =  0;
     }
-    std::cout<<"Entrez le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
+    std::cout<<"Entrez votre choix (0 ou 1) puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     if(x==0){
@@ -665,7 +665,7 @@ printf("\n");
   printf("\nTop 10 des prix les plus eleves des voitures:\n");
     cpt = n;
     while (cpt>n-10){
-      printf("[%d] %d Euros\n",n-cpt+1,T_gpu[cpt]);
+      printf("[%d] %d Euros\n",n-cpt+1,T_gpu[cpt-1]);
       cpt--;
     }
    printf("\n");
@@ -674,7 +674,7 @@ printf("\n");
   printf("\nTop 10 des voitures les plus durables :\n");
     cpt = n;
     while (cpt>n-10){
-      printf("[%d] %d Km\n",n-cpt+1,T_gpu[cpt]);
+      printf("[%d] %d Km\n",n-cpt+1,T_gpu[cpt-1]);
       cpt--;
     }
    printf("\n");
