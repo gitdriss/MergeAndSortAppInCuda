@@ -324,10 +324,10 @@ void tabRandom(){
     }
     std::cout<<"Entrez la taille du tableau puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
-    if(str(x)>0){
+    if(x>0){
       Entree = 1;
       char s;
-      printf("Vous avez entrez %d\n", str(x));
+      printf("Vous avez entrez %d\n", x);
       printf("Press enter to continue\n");
       s=getchar();
       putchar(s);
@@ -336,7 +336,7 @@ void tabRandom(){
     }
   }
 
-  n = str(x);
+  int n = str(x);
 
 // var pour timer
   cudaEvent_t startCPU, stopCPU;
@@ -416,7 +416,7 @@ printf("\n");
 //4 Exemple d'application donnee automobile
 
 
-void sousMenu(){
+int sousMenu(){
   int x;
   int Entree = 0;
   int Erreur = 0;
@@ -675,8 +675,8 @@ printf("\nFree - End\n");
   printf("DO Alexandre\n");
   printf("\nNovembre 2017\n");
 //free
-  free(T_cpu);
-  free(T_gpu);
+  //free(T_cpu);
+  //free(T_gpu);
 
 // return 0
   return 0;
