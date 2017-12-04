@@ -437,7 +437,7 @@ void tabFile(){
       printf("Press enter to continue\n");
       s=getchar();
       putchar(s);
-      Entree == 1
+      Entree == 1;
     }else{
       Erreur  =  1;
     }
