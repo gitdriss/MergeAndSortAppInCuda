@@ -16,4 +16,5 @@ clean:
 
 exec:
 	./genere
+	python doc.py
 	./exe
