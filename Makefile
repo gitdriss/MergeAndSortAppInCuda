@@ -1,7 +1,6 @@
 target: exe genere
 
 CC=nvcc
-CC2=gcc
 CFLAGS= -std=c++11
 
 exe: main.cu
