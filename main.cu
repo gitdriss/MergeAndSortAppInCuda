@@ -324,6 +324,7 @@ void tabRandom(){
     }
     std::cout<<"Entrez la taille du tableau puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
+    while (getchar() != '\n'); //vide le buffer de saisie
     if(x>0){
       Entree = 1;
       char s;
@@ -434,73 +435,75 @@ int sousMenu(){
       std::cout<<"[Erreur] Entrée non valide !"<<std::endl;
       Erreur  =  0;
     }
-  std::cout<<"Appuyer sur une touche entre 0 et 2  puis valider avec la touche ENTREE"<<std::endl;
-  std::cin>>x;
+    std::cout<<"Appuyer sur une touche entre 0 et 5  puis valider avec la touche ENTREE"<<std::endl;
+    std::cin>>x;
+    while (getchar() != '\n'); //vide le buffer de saisie
 
-  switch ( x ){
-    case 0: 
-      system("clear");
-      std::cout<<"Vous avez choisi de quitter"<<std::endl;
-      std::cout<<"Etes vous sur?"<<std::endl;
-      std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
-      std::cin>>x;
-      if(x!=1){
+    switch ( x ){
+      case 0: 
         system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        sleep(0.6);
+        std::cout<<"Vous avez choisi de quitter"<<std::endl;
+        std::cout<<"Etes vous sur?"<<std::endl;
+        std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
+        std::cin>>x;
+        while (getchar() != '\n'); //vide le buffer de saisie
+        if(x!=1){
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          sleep(0.6);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"3"<<std::endl;
+           sleep(1);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"  2"<<std::endl;
+          sleep(1);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"    1"<<std::endl;
+          sleep(1);
+          Entree = 2;
+          system("clear");
+        }
+        break; 
+      case 1:  
         system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"3"<<std::endl;
-        sleep(1);
-        system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"  2"<<std::endl;
-        sleep(1);
-        system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"    1"<<std::endl;
-        sleep(1);
-        Entree = 2;
-        system("clear");
-      }
-      break; 
-    case 1:  
-      system("clear");
-      std::cout<<"1\tHelp"<<std::endl;
-      std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<"Le but du programme est de....."<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<"Utilisation :"<<std::endl;
-      std::cout<<"- ...."<<std::endl;
-      std::cout<<"- ...."<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      sleep(2);
-      char sh;
-      printf("Press enter to continue\n");
-      sh=getchar();
-      putchar(sh);
-      break;  
-    case 2:  
-      // Test sur tableau random
-      tabRandom();
-      break;
-    case 3:  
-    // Lecture à partir d'un fichier
+        std::cout<<"1\tHelp"<<std::endl;
+        std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<"Le but du programme est de....."<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<"Utilisation :"<<std::endl;
+        std::cout<<"- ...."<<std::endl;
+        std::cout<<"- ...."<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        sleep(2);
+        char sh;
+        printf("Press enter to continue\n");
+        sh=getchar();
+        putchar(sh);
+        break;  
+      case 2:  
+        // Test sur tableau random
+        tabRandom();
+        break;
+      case 3:  
+      // Lecture à partir d'un fichier
 
-      break;
-    case 4:  
-    // Exemple d'application donnee automobile
+        break;
+      case 4:  
+      // Exemple d'application donnee automobile
 
-      break;
-    case 5:  
-      Entree = 1;
-      break;
-    default:  
-      Erreur = 1;
+        break;
+      case 5:  
+        Entree = 1;
+        break;
+      default:  
+        Erreur = 1;
     } 
   }
   return Entree;
@@ -522,65 +525,66 @@ void menuPrincipal(){
       std::cout<<"[Erreur] Entrée non valide !"<<std::endl;
       Erreur  =  0;
     }
-  std::cout<<"Appuyer sur une touche entre 0 et 2  puis valider avec la touche ENTREE"<<std::endl;
-  std::cin>>x;
-
-  switch ( x ){
-    case 0: 
-      system("clear");
-      std::cout<<"Vous avez choisi de quitter"<<std::endl;
-      std::cout<<"Etes vous sur?"<<std::endl;
-      std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
-      std::cin>>x;
-      if(x!=1){
+    std::cout<<"Appuyer sur une touche entre 0 et 3  puis valider avec la touche ENTREE"<<std::endl;
+    std::cin>>x;
+    while (getchar() != '\n'); //vide le buffer de saisie
+    switch ( x ){
+      case 0: 
         system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        sleep(0.6);
+        std::cout<<"Vous avez choisi de quitter"<<std::endl;
+        std::cout<<"Etes vous sur?"<<std::endl;
+        std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
+        std::cin>>x;
+        while (getchar() != '\n'); //vide le buffer de saisie
+        if(x!=1){
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          sleep(0.6);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"3"<<std::endl;
+          sleep(1);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"  2"<<std::endl;
+          sleep(1);
+          system("clear");
+          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"    1"<<std::endl;
+          sleep(1);
+          Entree = 1;
+          system("clear");
+        }
+        break; 
+      case 1:  
         system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"3"<<std::endl;
-        sleep(1);
-        system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"  2"<<std::endl;
-        sleep(1);
-        system("clear");
-        std::cout<<"Merci et à bientot"<<std::endl;
-        std::cout<<"    1"<<std::endl;
-        sleep(1);
-        Entree = 1;
-        system("clear");
-      }
-      break; 
-    case 1:  
-      system("clear");
-      std::cout<<"1\tHelp"<<std::endl;
-      std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<"Le but du programme est de....."<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<"Utilisation :"<<std::endl;
-      std::cout<<"- ...."<<std::endl;
-      std::cout<<"- ...."<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      std::cout<<""<<std::endl;
-      sleep(2);
-      char sh;
-      printf("Press enter to continue\n");
-      sh=getchar();
-      putchar(sh);
-      break;  
-    case 2:  
-      if(sousMenu()==2)
-        Entree = 1;
-      break;
-    case 3:  
-      intro();
-      break;
-    default:  
-      Erreur = 1;
+        std::cout<<"1\tHelp"<<std::endl;
+        std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<"Le but du programme est de....."<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<"Utilisation :"<<std::endl;
+        std::cout<<"- ...."<<std::endl;
+        std::cout<<"- ...."<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        std::cout<<""<<std::endl;
+        sleep(2);
+        char sh;
+        printf("Press enter to continue\n");
+        sh=getchar();
+        putchar(sh);
+        break;  
+      case 2:  
+        if(sousMenu()==2)
+          Entree = 1;
+        break;
+      case 3:  
+        intro();
+        break;
+      default:  
+        Erreur = 1;
     } 
   }
 }
