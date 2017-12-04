@@ -5,6 +5,14 @@
 
 //Source : https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf
 
+//10000000
+//Time GPU : 75741.320312 ms
+//Time CPU : 76382.484375 ms
+
+//100
+//Time GPU : 0.141312 ms
+//Time CPU : 0.109536 ms
+
 #include <stdio.h>
 #include <time.h>
 #include <cuda_runtime.h>
@@ -18,11 +26,11 @@
 #include <string>
 
 #define NB 1
-#define NTPB 4
+#define NTPB 16
 #define N NTPB*NB
 
 #define TAILLE 13
-#define GRAIN 0
+#define GRAIN 10
 
 //Fct test tri
 bool is_sorted(int* array, int n) {
