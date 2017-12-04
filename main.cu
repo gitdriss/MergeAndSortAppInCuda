@@ -251,6 +251,9 @@ void intro(){
 
   system("clear");
   printf("MergeAndSortAppInCuda\n");
+  printf("\n");
+  sleep(1);
+  printf("Version Beta\n");
   sleep(1);
 
   system("clear");
@@ -286,6 +289,8 @@ void introShort(){
 
   system("clear");
   printf("MergeAndSortAppInCuda\n");
+  printf("\n");
+  printf("Version Beta\n");
   sleep(1);
 
   system("clear");
@@ -377,6 +382,11 @@ printf("\nTime resuts\n");
   cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
   printf("Time CPU : %f ms\n",millisecondsCPU);
 
+ printf("\n T_gpu %d : \n",n);
+   for(int i=0;i<n;i++){
+  printf("%d\t",T_gpu[i]);
+    }
+  printf("\n");
 
 printf("\n");
   char s;
