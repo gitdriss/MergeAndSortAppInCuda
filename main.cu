@@ -261,7 +261,7 @@ void intro(){
   printf("MergeAndSortAppInCuda\n");
   printf("\n");
   sleep(1);
-  printf("Version Beta\n");
+  printf("Version Beta 2\n");
   sleep(1);
 
   system("clear");
@@ -298,7 +298,7 @@ void introShort(){
   system("clear");
   printf("MergeAndSortAppInCuda\n");
   printf("\n");
-  printf("Version Beta\n");
+  printf("Version Beta 2\n");
   sleep(1);
 
   system("clear");
@@ -309,25 +309,34 @@ void introShort(){
   system("clear");
 }
 
+//2 Test sur tableau random
+void tabRandom(){
 
-//main
-int main(){
- int n = TAILLE;
+  int Entree = 0;
+  int Erreur = 0;
+  while(Entree == 0){
+    system("clear");
+    std::cout<<"2\tTest sur tableau random"<<std::endl;
 
-// Gestion de l intro
-  FILE* fichier = NULL;
-  fichier = fopen("tmp.txt", "r");
-
-  if (fichier == NULL){ // 1ere fois
-    intro();
-    FILE* fichier2 = NULL;
-    fichier2 = fopen("tmp.txt", "w");
-    fprintf(fichier2, "1");
-    fclose(fichier2);
-  }else{ // intro deja faite une fois)
-    fclose(fichier);
-    introShort();
+    if(Erreur == 1){
+      std::cout<<"[Erreur] Entrée non valide ! (entier positif)"<<std::endl;
+      Erreur  =  0;
+    }
+    std::cout<<"Entrez la taille du tableau puis valider avec la touche ENTREE"<<std::endl;
+    std::cin>>x;
+    if(str(x)>0){
+      Entree = 1;
+      char s;
+      printf("Vous avez entrez %d\n", str(x));
+      printf("Press enter to continue\n");
+      s=getchar();
+      putchar(s);
+    }else{
+      Erreur  =  1;
+    }
   }
+
+  n = str(x);
 
 // var pour timer
   cudaEvent_t startCPU, stopCPU;
@@ -352,13 +361,7 @@ printf("\nInit Array\n");
     cpt++;
   }
 printf("\n");
-/*
- printf("\n T_cpu %d : \n",n);
-   for(int i=0;i<n;i++){
-  printf("%d\t",T_cpu[i]);
-    }
-  printf("\n");
-*/
+
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
@@ -395,17 +398,269 @@ printf("\nTime resuts\n");
   float millisecondsCPU = 0;
   cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
   printf("Time CPU : %f ms\n",millisecondsCPU);
+
+printf("\n");
+  char s;
+  printf("Press enter to continue\n");
+  s=getchar();
+  putchar(s);
+
+//free
+  free(T_cpu);
+  free(T_gpu);
+
+}
+
+//3 Lecture à partir d'un fichier
+
+//4 Exemple d'application donnee automobile
+
+
+void sousMenu(){
+ int Entree = 0;
+  int Erreur = 0;
+  while(Entree == 0){
+    system("clear");
+    std::cout<<"Tester l'agorithme de tri"<<std::endl;
+    std::cout<<"0\tQuitter"<<std::endl;
+    std::cout<<"1\tHelp"<<std::endl;
+    std::cout<<"2\tTest sur tableau random"<<std::endl;
+    std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
+    std::cout<<"4\tExemple d'application donnee automobile"<<std::endl;
+    std::cout<<"5\tRetour menu principal"<<std::endl;
+
+    if(Erreur == 1){
+      std::cout<<"[Erreur] Entrée non valide !"<<std::endl;
+      Erreur  =  0;
+    }
+  std::cout<<"Appuyer sur une touche entre 0 et 2  puis valider avec la touche ENTREE"<<std::endl;
+  std::cin>>x;
+
+  switch ( x ){
+    case 0: 
+      system("clear");
+      std::cout<<"Vous avez choisi de quitter"<<std::endl;
+      std::cout<<"Etes vous sur?"<<std::endl;
+      std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
+      std::cin>>x;
+      if(x!=1){
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        sleep(0.6);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"3"<<std::endl;
+        sleep(1);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"  2"<<std::endl;
+        sleep(1);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"    1"<<std::endl;
+        sleep(1);
+        Entree = 2;
+        system("clear");
+      }
+      break; 
+    case 1:  
+      system("clear");
+      std::cout<<"1\tHelp"<<std::endl;
+      std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Le but du programme est de....."<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Utilisation :"<<std::endl;
+      std::cout<<"- ...."<<std::endl;
+      std::cout<<"- ...."<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Appuyer sur un CHIFFRE pour continuer puis valider avec la touche ENTREE"<<std::endl;
+      std::cin>>x;
+      break;  
+    case 2:  
+      // Test sur tableau random
+      tabRandom();
+      break;
+    case 3:  
+    // Lecture à partir d'un fichier
+
+      break;
+    case 4:  
+    // Exemple d'application donnee automobile
+
+      break;
+    case 5:  
+      Entree = 1;
+      break;
+    default:  
+      Erreur = 1;
+    } 
+  }
+  return Entree;
+}
+
+void menuPrincipal(){
+
+  int Entree = 0;
+  int Erreur = 0;
+  while(Entree == 0){
+    system("clear");
+    std::cout<<"Menu principal"<<std::endl;
+    std::cout<<"0\tQuitter"<<std::endl;
+    std::cout<<"1\tHelp"<<std::endl;
+    std::cout<<"2\tTester l'agorithme de tri"<<std::endl;
+    std::cout<<"3\tReset"<<std::endl;
+
+    if(Erreur == 1){
+      std::cout<<"[Erreur] Entrée non valide !"<<std::endl;
+      Erreur  =  0;
+    }
+  std::cout<<"Appuyer sur une touche entre 0 et 2  puis valider avec la touche ENTREE"<<std::endl;
+  std::cin>>x;
+
+  switch ( x ){
+    case 0: 
+      system("clear");
+      std::cout<<"Vous avez choisi de quitter"<<std::endl;
+      std::cout<<"Etes vous sur?"<<std::endl;
+      std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
+      std::cin>>x;
+      if(x!=1){
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        sleep(0.6);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"3"<<std::endl;
+        sleep(1);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"  2"<<std::endl;
+        sleep(1);
+        system("clear");
+        std::cout<<"Merci et à bientot"<<std::endl;
+        std::cout<<"    1"<<std::endl;
+        sleep(1);
+        Entree = 1;
+        system("clear");
+      }
+      break; 
+    case 1:  
+      system("clear");
+      std::cout<<"1\tHelp"<<std::endl;
+      std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Le but du programme est de....."<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Utilisation :"<<std::endl;
+      std::cout<<"- ...."<<std::endl;
+      std::cout<<"- ...."<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<""<<std::endl;
+      std::cout<<"Appuyer sur un CHIFFRE pour continuer puis valider avec la touche ENTREE"<<std::endl;
+      std::cin>>x;
+      break;  
+    case 2:  
+      if(sousMenu()==2)
+        Entree = 1;
+      break;
+    case 3:  
+      intro();
+      break;
+    default:  
+      Erreur = 1;
+    } 
+  }
+}
+
+
+//main
+int main(){
+ int n = TAILLE;
+
+// Gestion de l intro
+  FILE* fichier = NULL;
+  fichier = fopen("tmp.txt", "r");
+
+  if (fichier == NULL){ // 1ere fois
+    intro();
+    FILE* fichier2 = NULL;
+    fichier2 = fopen("tmp.txt", "w");
+    fprintf(fichier2, "1");
+    fclose(fichier2);
+  }else{ // intro deja faite une fois)
+    fclose(fichier);
+    introShort();
+  }
+
+menuPrincipal();
+
 /*
- printf("\n T_gpu %d : \n",n);
-   for(int i=0;i<n;i++){
-  printf("%d\t",T_gpu[i]);
-    }
-  printf("\n");
- printf("\n T_cpu %d : \n",n);
-   for(int i=0;i<n;i++){
-  printf("%d\t",T_cpu[i]);
-    }
-  printf("\n");
+// var pour timer
+  cudaEvent_t startCPU, stopCPU;
+  cudaEventCreate ( &startCPU );
+  cudaEventCreate ( &stopCPU );
+  cudaEvent_t startGPU, stopGPU;
+  cudaEventCreate ( &startGPU );
+  cudaEventCreate ( &stopGPU );
+
+//Alloc Array
+printf("Alloc Array\n");
+  srand(time(NULL));
+  int* T_cpu = (int*)malloc(n*sizeof(int));
+  int* T_gpu = (int*)malloc(n*sizeof(int));
+  int cpt=0;
+
+//init Array
+printf("\nInit Array\n");
+  while (cpt<n){
+    T_gpu[cpt]=(rand()%100);
+    T_cpu[cpt] = T_gpu[cpt];
+    cpt++;
+  }
+printf("\n");
+
+//sort CPU
+printf("\nCall sort CPU\n");
+  cudaEventRecord(startCPU);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  cudaEventRecord(stopCPU);
+printf("\n");
+//sort GPU
+printf("\nCall sort GPU\n");
+  cudaEventRecord(startGPU);
+  mergeAndSortRecuCPU(T_cpu, n);
+  cudaEventRecord(stopGPU);
+printf("Call cudaDeviceSynchronize\n");
+  cudaDeviceSynchronize();
+
+//test tri ok?
+printf("\nTest tri\n");
+  if(is_sorted(T_cpu, n)){
+    printf("OK\n");
+  //Fct test egale
+printf("Test egale\n");
+    if(is_equal(T_cpu, T_gpu, n))
+      printf("OK\n");
+    else
+      printf("[error] T_gpu mal trie");
+  }else{
+    printf("[error] T_cpu mal trie");   
+  }
+
+//Time resuts
+printf("\nTime resuts\n");
+  float millisecondsGPU = 0;
+  cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
+  printf("\nTime GPU : %f ms\n",millisecondsGPU);
+  float millisecondsCPU = 0;
+  cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
+  printf("Time CPU : %f ms\n",millisecondsCPU);
 */
 printf("\n");
   char s;
