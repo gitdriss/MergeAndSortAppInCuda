@@ -7,7 +7,7 @@ int main(){
 	FILE* fichier3 = NULL;
 	fichier3 = fopen("exemple2.txt", "w");
 	int i;
-	for(i=0; i<10000; i++) {
+	for(i=0; i<1000000; i++) {
 		nombre_aleatoire = rand();
 		fprintf(fichier3,"%d\n",nombre_aleatoire );
 	}
