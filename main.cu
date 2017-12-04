@@ -167,13 +167,14 @@ printf("[%d] Call merge\n",tid);
 void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin, int blockSize)
 {
   int n = i_fin - i_debut + 1;
+/*
 printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize);
  printf("\n T %d : \n",n);
    for(int i=0;i<n;i++){
   printf("%d\t",T[i]);
     }
   printf("\n");
-
+*/
   if (n < GRAIN){
 
     int i_milieu = i_debut + (i_fin - i_debut) / 2;
@@ -351,13 +352,13 @@ printf("\nInit Array\n");
     cpt++;
   }
 printf("\n");
-
+/*
  printf("\n T_cpu %d : \n",n);
    for(int i=0;i<n;i++){
   printf("%d\t",T_cpu[i]);
     }
   printf("\n");
-
+*/
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
@@ -394,7 +395,7 @@ printf("\nTime resuts\n");
   float millisecondsCPU = 0;
   cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
   printf("Time CPU : %f ms\n",millisecondsCPU);
-
+/*
  printf("\n T_gpu %d : \n",n);
    for(int i=0;i<n;i++){
   printf("%d\t",T_gpu[i]);
@@ -405,7 +406,7 @@ printf("\nTime resuts\n");
   printf("%d\t",T_cpu[i]);
     }
   printf("\n");
-
+*/
 printf("\n");
   char s;
   printf("Press enter to continue\n");
@@ -413,7 +414,10 @@ printf("\n");
   putchar(s);
   system("clear");
 printf("\nFree - End\n");
-
+  printf("\nBy\n");
+  printf("ALOUI Driss\n");
+  printf("DO Alexandre\n");
+  printf("\nNovembre 2017\n");
 //free
   free(T_cpu);
   free(T_gpu);
