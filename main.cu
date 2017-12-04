@@ -446,11 +446,13 @@ void tabFile(){
 //ouverture fichier
 
 //lecture fichier
+printf("Lecture fichier...\n");
   int num;
   std::vector<int> tab;
   while (file >> num) { tab.push_back(num); }
 
   int n = tab.size();
+printf("%d elements lues\n",n);
 
 // var pour timer
   cudaEvent_t startCPU, stopCPU;
@@ -786,7 +788,6 @@ printf("\nTime resuts\n");
 */
 
   system("clear");
-printf("\nFree - End\n");
   printf("\nBy\n");
   printf("ALOUI Driss\n");
   printf("DO Alexandre\n");
