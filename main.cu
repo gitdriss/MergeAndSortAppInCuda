@@ -784,11 +784,7 @@ printf("\nTime resuts\n");
   cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
   printf("Time CPU : %f ms\n",millisecondsCPU);
 */
-printf("\n");
-  char s;
-  printf("Press enter to continue\n");
-  s=getchar();
-  putchar(s);
+
   system("clear");
 printf("\nFree - End\n");
   printf("\nBy\n");
