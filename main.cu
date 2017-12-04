@@ -663,19 +663,19 @@ printf("\nTime results\n");
 printf("\n");
   if(Entree == 1){//price
   printf("\nTop 10 des prix les plus eleves des voitures:\n");
-    cpt = n - 10;
-    while (cpt<n){
-      printf("[%d] %d Euros\n",cpt+10-n,T_gpu[cpt]);
-      cpt++;
+    cpt = n;
+    while (cpt>n-10){
+      printf("[%d] %d Euros\n",n-cpt+1,T_gpu[cpt]);
+      cpt--;
     }
    printf("\n");
   }
   if(Entree == 2){//kilometer
   printf("\nTop 10 des voitures les plus durables :\n");
-    cpt = n - 10;
-    while (cpt<n){
-      printf("[%d] %d Km\n",cpt+10-n,T_gpu[cpt]);
-      cpt++;
+    cpt = n;
+    while (cpt>n-10){
+      printf("[%d] %d Km\n",n-cpt+1,T_gpu[cpt]);
+      cpt--;
     }
    printf("\n");
   }
