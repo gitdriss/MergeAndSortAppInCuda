@@ -20,8 +20,8 @@
 #define NTPB 4
 #define N NTPB*NB
 
-#define TAILLE 120
-#define GRAIN 10
+#define TAILLE 1200
+#define GRAIN 20
 
 //Fct test tri
 bool is_sorted(int* array, int n) {
