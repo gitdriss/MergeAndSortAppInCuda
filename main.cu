@@ -336,7 +336,7 @@ void tabRandom(){
     }
   }
 
-  int n = str(x);
+  int n = x;
 
 // var pour timer
   cudaEvent_t startCPU, stopCPU;
@@ -582,7 +582,7 @@ void menuPrincipal(){
 
 //main
 int main(){
- int n = TAILLE;
+  //int n = TAILLE;
 
 // Gestion de l intro
   FILE* fichier = NULL;
