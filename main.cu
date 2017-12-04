@@ -166,7 +166,7 @@ printf("[%d] Call merge\n",tid);
 // Fct Merge and sort pour GPU
 void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin, int blockSize)
 {
-  int n = i_fin - i_debut;
+  int n = i_fin - i_debut + 1;
 printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize);
  printf("\n T %d : \n",n);
    for(int i=0;i<n;i++){
