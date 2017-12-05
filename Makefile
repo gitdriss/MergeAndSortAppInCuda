@@ -4,6 +4,7 @@ CC=nvcc
 CFLAGS= -std=c++11
 
 ./bin/exe: src/main.cu
+	rm -f -r bin/
 	mkdir bin
 	$(CC) -L./lib $(CFLAGS) -o $@ $^
 
