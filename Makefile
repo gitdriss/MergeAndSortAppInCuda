@@ -1,4 +1,4 @@
-target: exe genere
+target: bin/exe script/genere
 
 CC=nvcc
 CFLAGS= -std=c++11

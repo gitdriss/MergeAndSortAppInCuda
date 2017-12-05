@@ -757,14 +757,14 @@ int sousMenu(){
         std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+        std::cout<<"Naviguer dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<"Utilisation :"<<std::endl;
         std::cout<<"- Test sur tableau random : genere aleatoirement un tableau d'entier et le tri"<<std::endl;
-        std::cout<<"- Lecture à partir d'un fichier : lit à patir d'un fichier un tableau d'entier et le tri."<<std::endl;
+        std::cout<<"- Lecture à partir d'un fichier : lit à partir d'un fichier un tableau d'entier et le tri."<<std::endl;
         std::cout<<"  Le fichier doit etre ecrit de la meme maniere que data/exemple.txt"<<std::endl;
         std::cout<<"  On peut utiliser script/genere.c pour en creer un nouveau."<<std::endl;
-std::cout<<"- Exemple d'application donnee automobile : des donnees automobile esont lues et triees."<<std::endl;
+std::cout<<"- Exemple d'application donnee automobile : des donnees automobiles sont lues et triees."<<std::endl;
 std::cout<<"  Il est essentiel de lancer le script de pretraitrement des donnees script/doc.py avant."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
@@ -850,7 +850,7 @@ void menuPrincipal(){
         std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+        std::cout<<"Naviguer dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         sleep(2);
         char sh;
@@ -881,7 +881,7 @@ void end(){
 }
 
 void prelude(){
-  std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+  std::cout<<"Naviguer dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
   std::cout<<""<<std::endl;
   sleep(2);
   char sh;
