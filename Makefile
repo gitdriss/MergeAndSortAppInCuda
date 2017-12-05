@@ -20,4 +20,4 @@ clean:
 exec:
 	./script/genere
 	python script/doc.py
-	./bin/exe
+	cd bin && ./exe
