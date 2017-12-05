@@ -4,6 +4,7 @@ CC=nvcc
 CFLAGS= -std=c++11
 
 ./bin/exe: src/main.cu
+        mkdir bin
 	$(CC) -L./lib $(CFLAGS) -o $@ $^
 
 ./script/genere: script/genere.c
