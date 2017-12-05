@@ -447,8 +447,8 @@ void tabFile(){
     std::cout<<"Entrer le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
-    file.open(x);
     x = "../data/" + x;
+    file.open(x)
     if(file.is_open()){
       char s;
       std::cout<<"Vous avez entré "<<x<<std::endl;
