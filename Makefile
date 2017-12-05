@@ -3,18 +3,21 @@ target: exe genere
 CC=nvcc
 CFLAGS= -std=c++11
 
-exe: main.cu
+bin/exe: src/main.cu
 	$(CC) -L./lib $(CFLAGS) -o $@ $^
 
-genere: genere.c
+script/genere: script/genere.c
 	$(CC) -o $@ $^
 
 .PHONY: clean
 
+reset:
+	rm -f *.o bin/exe src/tmp.txt bin/exemple2.txt bin/exemple.txt data/price.txt data/kilometer.txt
+
 clean:
-	rm -f *.o exe tmp.txt exemple2.txt
+	rm -f *.o bin/exe src/tmp.txt
 
 exec:
-	./genere
-	python doc.py
-	./exe
+	./script/genere
+	python script/doc.py
+	./bin/exe

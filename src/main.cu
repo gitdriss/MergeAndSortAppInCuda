@@ -5,6 +5,7 @@
 
 //Source : https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf
 
+//tests
 //10000000
 //Time GPU : 75741.320312 ms
 //Time CPU : 76382.484375 ms
@@ -13,6 +14,7 @@
 //Time GPU : 0.141312 ms
 //Time CPU : 0.109536 ms
 
+//---------------- INCLUDE ----------------
 #include <stdio.h>
 #include <time.h>
 #include <cuda_runtime.h>
@@ -25,6 +27,7 @@
 #include <math.h>
 #include <string>
 
+//---------------- DEFINE ----------------
 #define NB 1024
 #define NTPB 1024
 #define N NTPB*NB
@@ -32,6 +35,7 @@
 #define TAILLE 13
 #define GRAIN 10
 
+//---------------- FONCTIONS UTILITAIRES ----------------
 //Fct test tri
 bool is_sorted(int* array, int n) {
   for(int i=0; i<n-1; i++) {
@@ -47,6 +51,26 @@ bool is_equal(int* array1, int* array2, int n) {
   }
   return true;
 }
+
+
+//Fct Pgcd (pour la gestion du nombre de thread)
+// Source : https://openclassrooms.com/forum/sujet/algorithme-de-calcul-de-pgcd-20803
+int get_pgcd(int a, int b){
+
+  int pgcd = 0;
+  while(1){
+    pgcd = a % b;
+      if(pgcd == 0){
+        pgcd = b;
+        break;
+      }
+    a = b;
+    b = pgcd;
+  }
+  return pgcd;
+}
+
+//---------------- version CPU ----------------
 
 //Fct Merge CPU.
 void MergeCPU(int *A, int *L, int leftCount, int *R, int rightCount) {
@@ -90,23 +114,7 @@ void mergeAndSortRecuCPU(int *A,int n) {
 
 
 
-//Fct Pgcd (pour la gestion du nombre de thread)
-// Source : https://openclassrooms.com/forum/sujet/algorithme-de-calcul-de-pgcd-20803
-int get_pgcd(int a, int b){
-
-  int pgcd = 0;
-  while(1){
-    pgcd = a % b;
-      if(pgcd == 0){
-        pgcd = b;
-        break;
-      }
-    a = b;
-    b = pgcd;
-  }
-  return pgcd;
-}
-
+//---------------- version GPU ----------------
 
 //Fct Merge GPU
 __host__ __device__ void mergeGPU(int* A, int na, int aid, int* B, int nb, int bid, int* C, int cid, int T) {
@@ -233,6 +241,7 @@ printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
   }
 }
 
+//---------------- FONCTIONS APP ----------------
 
 // Fct intro
 void intro(){
@@ -439,6 +448,7 @@ void tabFile(){
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     file.open(x);
+    x = "../data/" + x;
     if(file.is_open()){
       char s;
       std::cout<<"Vous avez entré "<<x<<std::endl;
@@ -560,7 +570,7 @@ void tabCars(){
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     if(x==0){
-      file.open("price.txt");//ouverture fichier
+      file.open("../data/price.txt");//ouverture fichier
       if(file.is_open()){
         char s;
         std::cout<<"Vous avez entré "<<x<<std::endl;
@@ -573,7 +583,7 @@ void tabCars(){
       }
     }else{
       if(x==1){
-        file.open("kilometer.txt");//ouverture fichier
+        file.open("../data/kilometer.txt");//ouverture fichier
         if(file.is_open()){
           char s;
           std::cout<<"Vous avez entré "<<x<<std::endl;
@@ -747,11 +757,15 @@ int sousMenu(){
         std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Le but du programme est de....."<<std::endl;
+        std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<"Utilisation :"<<std::endl;
-        std::cout<<"- ...."<<std::endl;
-        std::cout<<"- ...."<<std::endl;
+        std::cout<<"- Test sur tableau random : genere aleatoirement un tableau d'entier et le tri"<<std::endl;
+        std::cout<<"- Lecture à partir d'un fichier : lit à patir d'un fichier un tableau d'entier et le tri."<<std::endl;
+        std::cout<<"  Le fichier doit etre ecrit de la meme maniere que data/exemple.txt"<<std::endl;
+        std::cout<<"  On peut utiliser script/genere.c pour en creer un nouveau."<<std::endl;
+std::cout<<"- Exemple d'application donnee automobile : des donnees automobile esont lues et triees."<<std::endl;
+std::cout<<"  Il est essentiel de lancer le script de pretraitrement des donnees script/doc.py avant."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
@@ -836,13 +850,7 @@ void menuPrincipal(){
         std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Le but du programme est de....."<<std::endl;
-        std::cout<<""<<std::endl;
-        std::cout<<"Utilisation :"<<std::endl;
-        std::cout<<"- ...."<<std::endl;
-        std::cout<<"- ...."<<std::endl;
-        std::cout<<""<<std::endl;
-        std::cout<<""<<std::endl;
+        std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         sleep(2);
         char sh;
@@ -863,7 +871,26 @@ void menuPrincipal(){
   }
 }
 
+// End
+void end(){
+  system("clear");
+  printf("\nBy\n");
+  printf("ALOUI Driss\n");
+  printf("DO Alexandre\n");
+  printf("\nNovembre 2017\n");
+}
 
+void prelude(){
+  std::cout<<"Naviguez dans les menus pour tester toute nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+  std::cout<<""<<std::endl;
+  sleep(2);
+  char sh;
+  printf("Appuyer sur ENTREE pour continuer\n");
+  sh=getchar();
+  putchar(sh);
+}
+
+//---------------- MAIN ----------------
 //main
 int main(){
   //int n = TAILLE;
@@ -874,6 +901,7 @@ int main(){
 
   if (fichier == NULL){ // 1ere fois
     intro();
+    prelude();
     FILE* fichier2 = NULL;
     fichier2 = fopen("tmp.txt", "w");
     fprintf(fichier2, "1");
@@ -882,76 +910,9 @@ int main(){
     fclose(fichier);
     introShort();
   }
+  
+  menuPrincipal();
+  end();
 
-menuPrincipal();
-
-/*
-// var pour timer
-  cudaEvent_t startCPU, stopCPU;
-  cudaEventCreate ( &startCPU );
-  cudaEventCreate ( &stopCPU );
-  cudaEvent_t startGPU, stopGPU;
-  cudaEventCreate ( &startGPU );
-  cudaEventCreate ( &stopGPU );
-//Alloc Array
-printf("Alloc Array\n");
-  srand(time(NULL));
-  int* T_cpu = (int*)malloc(n*sizeof(int));
-  int* T_gpu = (int*)malloc(n*sizeof(int));
-  int cpt=0;
-//init Array
-printf("\nInit Array\n");
-  while (cpt<n){
-    T_gpu[cpt]=(rand()%100);
-    T_cpu[cpt] = T_gpu[cpt];
-    cpt++;
-  }
-printf("\n");
-//sort CPU
-printf("\nCall sort CPU\n");
-  cudaEventRecord(startCPU);
-  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
-  cudaEventRecord(stopCPU);
-printf("\n");
-//sort GPU
-printf("\nCall sort GPU\n");
-  cudaEventRecord(startGPU);
-  mergeAndSortRecuCPU(T_cpu, n);
-  cudaEventRecord(stopGPU);
-printf("Call cudaDeviceSynchronize\n");
-  cudaDeviceSynchronize();
-//test tri ok?
-printf("\nTest tri\n");
-  if(is_sorted(T_cpu, n)){
-    printf("OK\n");
-  //Fct test egale
-printf("Test egale\n");
-    if(is_equal(T_cpu, T_gpu, n))
-      printf("OK\n");
-    else
-      printf("[error] T_gpu mal trie");
-  }else{
-    printf("[error] T_cpu mal trie");   
-  }
-//Time resuts
-printf("\nTime resuts\n");
-  float millisecondsGPU = 0;
-  cudaEventElapsedTime(&millisecondsGPU, startGPU, stopGPU);
-  printf("\nTime GPU : %f ms\n",millisecondsGPU);
-  float millisecondsCPU = 0;
-  cudaEventElapsedTime(&millisecondsCPU, startCPU, stopCPU);
-  printf("Time CPU : %f ms\n",millisecondsCPU);
-*/
-
-  system("clear");
-  printf("\nBy\n");
-  printf("ALOUI Driss\n");
-  printf("DO Alexandre\n");
-  printf("\nNovembre 2017\n");
-//free
-  //free(T_cpu);
-  //free(T_gpu);
-
-// return 0
   return 0;
 }
