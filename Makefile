@@ -14,11 +14,11 @@ CFLAGS= -std=c++11
 
 reset:
 	rm -f *.o src/tmp.txt bin/exemple2.txt bin/exemple.txt data/price.txt data/kilometer.txt
-	rm -f -r bin
+	rm -f -r bin/
 
 clean:
 	rm -f *.o src/tmp.txt
-	rm -f -r bin
+	rm -f -r bin/
 
 exec:
 	./script/genere
