@@ -1,12 +1,12 @@
-target: bin/exe script/genere
+target: ./bin/exe ./script/genere
 
 CC=nvcc
 CFLAGS= -std=c++11
 
-bin/exe: src/main.cu
+./bin/exe: src/main.cu
 	$(CC) -L./lib $(CFLAGS) -o $@ $^
 
-script/genere: script/genere.c
+./script/genere: script/genere.c
 	$(CC) -o $@ $^
 
 .PHONY: clean
