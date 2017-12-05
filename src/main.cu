@@ -551,7 +551,7 @@ void tabCars(){
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
-    std::cout<<"Exemple d'application donnee automobile"<<std::endl;
+    std::cout<<"Exemple d'application données automobiles"<<std::endl;
     std::cout<<"0\tTop 10 Prix"<<std::endl;
     std::cout<<"1\tTop 10 Km"<<std::endl;
     if(Erreur == 1){
@@ -566,7 +566,7 @@ void tabCars(){
       std::cout<<"[Erreur] Fichier kilometer.txt manquant! Lancer le script doc.py"<<std::endl;
       Erreur  =  0;
     }
-    std::cout<<"Entrez votre choix (0 ou 1) puis valider avec la touche ENTREE"<<std::endl;
+    std::cout<<"Entrer votre choix (0 ou 1) puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     if(x==0){
@@ -608,7 +608,7 @@ printf("Lecture fichier...\n");
   while (file >> num) { tab.push_back(num); }
 
   int n = tab.size();
-printf("%d elements lues\n",n);
+printf("%d elements lus\n",n);
 
 // var pour timer
   cudaEvent_t startCPU, stopCPU;
@@ -672,7 +672,7 @@ printf("\nTime results\n");
   printf("Time CPU : %f ms\n",millisecondsCPU);
 printf("\n");
   if(Entree == 1){//price
-  printf("\nTop 10 des prix les plus eleves des voitures:\n");
+  printf("\nTop 10 des prix les plus élevés des voitures:\n");
     cpt = n;
     while (cpt>n-10){
       printf("[%d] %d Euros\n",n-cpt+1,T_gpu[cpt-1]);
@@ -712,7 +712,7 @@ int sousMenu(){
     std::cout<<"1\tHelp"<<std::endl;
     std::cout<<"2\tTest sur tableau random"<<std::endl;
     std::cout<<"3\tLecture à partir d'un fichier"<<std::endl;
-    std::cout<<"4\tExemple d'application donnee automobile"<<std::endl;
+    std::cout<<"4\tExemple d'application données automobiles"<<std::endl;
     std::cout<<"5\tRetour menu principal"<<std::endl;
 
     if(Erreur == 1){
@@ -727,7 +727,7 @@ int sousMenu(){
       case 0: 
         system("clear");
         std::cout<<"Vous avez choisi de quitter"<<std::endl;
-        std::cout<<"Etes vous sur?"<<std::endl;
+        std::cout<<"Etes vous sûr?"<<std::endl;
         std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
         std::cin>>x;
         while (getchar() != '\n'); //vide le buffer de saisie
@@ -757,15 +757,15 @@ int sousMenu(){
         std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Naviguez dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+        std::cout<<"Naviguer dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<"Utilisation :"<<std::endl;
-        std::cout<<"- Test sur tableau random : genere aleatoirement un tableau d'entier et le tri"<<std::endl;
-        std::cout<<"- Lecture à partir d'un fichier : lit à patir d'un fichier un tableau d'entier et le tri."<<std::endl;
-        std::cout<<"  Le fichier doit etre ecrit de la meme maniere que data/exemple.txt"<<std::endl;
-        std::cout<<"  On peut utiliser script/genere.c pour en creer un nouveau."<<std::endl;
-std::cout<<"- Exemple d'application donnee automobile : des donnees automobiles sont lues et triees."<<std::endl;
-std::cout<<"  Il est essentiel de lancer le script de pretraitrement des donnees script/doc.py avant."<<std::endl;
+        std::cout<<"- Test sur tableau random : génère aléatoirement un tableau d'entier et le tri"<<std::endl;
+        std::cout<<"- Lecture à partir d'un fichier : lit à partir d'un fichier un tableau d'entier et le tri."<<std::endl;
+        std::cout<<"  Le fichier doit être écrit de la meme manière que data/exemple.txt"<<std::endl;
+        std::cout<<"  On peut utiliser script/genere.c pour en créer un nouveau."<<std::endl;
+std::cout<<"- Exemple d'application données automobiles : des données automobiles sont lues et triees."<<std::endl;
+std::cout<<"  Il est essentiel de lancer le script de pré-traitrement des données script/doc.py avant."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
@@ -820,24 +820,24 @@ void menuPrincipal(){
       case 0: 
         system("clear");
         std::cout<<"Vous avez choisi de quitter"<<std::endl;
-        std::cout<<"Etes vous sur?"<<std::endl;
+        std::cout<<"Etes vous sûr?"<<std::endl;
         std::cout<<"Appuyer sur 1 pour revenir au Menu principal sinon une touche pour quitter puis valider avec la touche ENTREE"<<std::endl;
         std::cin>>x;
         while (getchar() != '\n'); //vide le buffer de saisie
         if(x!=1){
           system("clear");
-          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"Merci et à bientôt"<<std::endl;
           sleep(0.6);
           system("clear");
-          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"Merci et à bientôt"<<std::endl;
           std::cout<<"3"<<std::endl;
           sleep(1);
           system("clear");
-          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"Merci et à bientôt"<<std::endl;
           std::cout<<"  2"<<std::endl;
           sleep(1);
           system("clear");
-          std::cout<<"Merci et à bientot"<<std::endl;
+          std::cout<<"Merci et à bientôt"<<std::endl;
           std::cout<<"    1"<<std::endl;
           sleep(1);
           Entree = 1;
@@ -847,10 +847,10 @@ void menuPrincipal(){
       case 1:  
         system("clear");
         std::cout<<"1\tHelp"<<std::endl;
-        std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les selections dans les menus"<<std::endl;
+        std::cout<<"Merci d'utiliser exclusivement les CHIFFRES pour les sélections dans les menus"<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
-        std::cout<<"Naviguez dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+        std::cout<<"Naviguer dans les menus pour tester toutes nos implémentations de tri merge and sort sur CPU et GPU."<<std::endl;
         std::cout<<""<<std::endl;
         sleep(2);
         char sh;
@@ -881,7 +881,7 @@ void end(){
 }
 
 void prelude(){
-  std::cout<<"Naviguez dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU."<<std::endl;
+  std::cout<<"Naviguer dans les menus pour tester toutes nos implémentations de tri merge and sort sur CPU et GPU."<<std::endl;
   std::cout<<""<<std::endl;
   sleep(2);
   char sh;
