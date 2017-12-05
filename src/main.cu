@@ -5,12 +5,12 @@
 
 //Source : https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf
 
-//tests
-//10000000
-//Time GPU : 75741.320312 ms
-//Time CPU : 76382.484375 ms
+//Exemple de tests
+//N: 5463 GRAIN: 10
+//Time GPU : 3.856832 ms
+//Time CPU : 6.504000 ms
 
-//100
+//N: 100 GRAIN: 10
 //Time GPU : 0.141312 ms
 //Time CPU : 0.109536 ms
 
