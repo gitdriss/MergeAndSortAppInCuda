@@ -18,16 +18,16 @@ Introduction
 ------------
 Naviguez dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU.
 Nos applications de l'algorithme de tri :
-- Test sur tableau random : genere aleatoirement un tableau d'entier et le tri
-- Lecture à partir d'un fichier : lit à patir d'un fichier un tableau d'entier et le tri.
-  Le fichier doit etre ecrit de la meme maniere que data/exemple.txt
-  On peut utiliser script/genere.c pour en creer un nouveau.
-- Exemple d'application donnee automobile : des donnees automobiles sont lues et triees.
-  Il est essentiel de lancer le script de pretraitrement des donnees script/doc.py avant.
+- Test sur tableau random : génère aléatoirement un tableau d'entier et le tri
+- Lecture à partir d'un fichier : lit à partir d'un fichier un tableau d'entier et le tri.
+  Le fichier doit être écrit de la meme manière que data/exemple.txt
+  On peut utiliser script/genere.c pour en créer un nouveau.
+- Exemple d'application donnee automobile : des données automobiles sont lues et triées.
+  Il est essentiel de lancer le script de prétraitrement des données script/doc.py avant.
 
-Bibiotheques
+Bibliothèques
 ------------
-- Il faut posseder un environement avec GPU (compilateur nvcc).
+- Il faut posséder un environement avec GPU (compilateur nvcc).
 - Biblioteques C++
 - Python Panda
 
