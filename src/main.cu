@@ -441,7 +441,7 @@ void tabFile(){
     std::cout<<"Lecture à partir d'un fichier"<<std::endl;
 
     if(Erreur == 1){
-      std::cout<<"[Erreur] Entrée non valide ! Le fichier doit se trouver dans le repertoire courant ex : exemple.txt et il doit utiliser des ';' en séparateur"<<std::endl;
+      std::cout<<"[Erreur] Entrée non valide ! Le fichier doit se trouver dans le repertoire courant ex : exemple.txt et il doit utiliser des \ n en séparateur"<<std::endl;
       Erreur  =  0;
     }
     std::cout<<"Entrer le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
