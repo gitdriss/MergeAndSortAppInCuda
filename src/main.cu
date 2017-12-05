@@ -420,7 +420,7 @@ printf("\nTime results\n");
 
 printf("\n");
   char s;
-  printf("Press enter to continue\n");
+  printf("Appuyer sur ENTREE pour continuer\n");
   s=getchar();
   putchar(s);
 
@@ -764,7 +764,7 @@ int sousMenu(){
         std::cout<<"- Lecture à partir d'un fichier : lit à patir d'un fichier un tableau d'entier et le tri."<<std::endl;
         std::cout<<"  Le fichier doit etre ecrit de la meme maniere que data/exemple.txt"<<std::endl;
         std::cout<<"  On peut utiliser script/genere.c pour en creer un nouveau."<<std::endl;
-std::cout<<"- Exemple d'application donnee automobile : des donnees automobile esont lues et triees."<<std::endl;
+std::cout<<"- Exemple d'application donnee automobile : des donnees automobiles sont lues et triees."<<std::endl;
 std::cout<<"  Il est essentiel de lancer le script de pretraitrement des donnees script/doc.py avant."<<std::endl;
         std::cout<<""<<std::endl;
         std::cout<<""<<std::endl;
