@@ -272,7 +272,7 @@ void intro(){
   sleep(2);
 
   system("clear");
-  printf("Présente\n");
+  printf("Présentent\n");
   sleep(1);
 
   system("clear");
@@ -310,7 +310,7 @@ void introShort(){
   sleep(2);
 
   system("clear");
-  printf("Présente\n");
+  printf("Présentent\n");
   sleep(1);
 
   system("clear");
