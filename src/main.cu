@@ -448,7 +448,7 @@ void tabFile(){
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     x = "../data/" + x;
-    file.open(x)
+    file.open(x);
     if(file.is_open()){
       char s;
       std::cout<<"Vous avez entré "<<x<<std::endl;
