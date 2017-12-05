@@ -270,12 +270,12 @@ void intro(){
   printf("MergeAndSortAppInCuda\n");
   printf("\n");
   sleep(1);
-  printf("Version Beta 2\n");
+  printf("Version finale\n");
   sleep(1);
 
   system("clear");
   char s;
-  printf("Press enter to continue\n");
+  printf("Appuyer sur ENTREE pour continuer\n");
   s=getchar();
   putchar(s);
   system("clear");
@@ -307,12 +307,12 @@ void introShort(){
   system("clear");
   printf("MergeAndSortAppInCuda\n");
   printf("\n");
-  printf("Version Beta 2\n");
+  printf("Version finale\n");
   sleep(1);
 
   system("clear");
   char s;
-  printf("Press enter to continue\n");
+  printf("Appuyer sur ENTREE pour continuer\n");
   s=getchar();
   putchar(s);
   system("clear");
@@ -331,14 +331,14 @@ void tabRandom(){
       std::cout<<"[Erreur] Entrée non valide ! (entier positif)"<<std::endl;
       Erreur  =  0;
     }
-    std::cout<<"Entrez la taille du tableau puis valider avec la touche ENTREE"<<std::endl;
+    std::cout<<"Entrer la taille du tableau puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     if(x>0){
       Entree = 1;
       char s;
-      printf("Vous avez entrez %d\n", x);
-      printf("Press enter to continue\n");
+      printf("Vous avez entré %d\n", x);
+      printf("Appuyer sur ENTREE pour continuer\n");
       s=getchar();
       putchar(s);
     }else{
@@ -435,14 +435,14 @@ void tabFile(){
       std::cout<<"[Erreur] Entrée non valide ! Le fichier doit se trouver dans le repertoire courant ex : exemple.txt et il doit utiliser des ';' en séparateur"<<std::endl;
       Erreur  =  0;
     }
-    std::cout<<"Entrez le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
+    std::cout<<"Entrer le nom du fichier puis valider avec la touche ENTREE"<<std::endl;
     std::cin>>x;
     while (getchar() != '\n'); //vide le buffer de saisie
     file.open(x);
     if(file.is_open()){
       char s;
-      std::cout<<"Vous avez entrez "<<x<<std::endl;
-      printf("Press enter to continue\n");
+      std::cout<<"Vous avez entré "<<x<<std::endl;
+      printf("Appuyer sur ENTREE pour continuer\n");
       s=getchar();
       putchar(s);
       Entree = 1;
@@ -525,7 +525,7 @@ printf("\nTime results\n");
 
 printf("\n");
   char s;
-  printf("Press enter to continue\n");
+  printf("Appuyer sur ENTREE pour continuer\n");
   s=getchar();
   putchar(s);
 
@@ -542,8 +542,8 @@ void tabCars(){
   while(Entree == 0){
     system("clear");
     std::cout<<"Exemple d'application donnee automobile"<<std::endl;
-    std::cout<<"0\ttop 10 Prix"<<std::endl;
-    std::cout<<"1\ttop 10 Km"<<std::endl;
+    std::cout<<"0\tTop 10 Prix"<<std::endl;
+    std::cout<<"1\tTop 10 Km"<<std::endl;
     if(Erreur == 1){
       std::cout<<"[Erreur] Entrée non valide ! choisir une option 1 ou 2"<<std::endl;
       Erreur  =  0;
@@ -563,8 +563,8 @@ void tabCars(){
       file.open("price.txt");//ouverture fichier
       if(file.is_open()){
         char s;
-        std::cout<<"Vous avez entrez "<<x<<std::endl;
-        printf("Press enter to continue\n");
+        std::cout<<"Vous avez entré "<<x<<std::endl;
+        printf("Appuyer sur ENTREE pour continuer\n");
         s=getchar();
         putchar(s);
         Entree = 1;
@@ -576,8 +576,8 @@ void tabCars(){
         file.open("kilometer.txt");//ouverture fichier
         if(file.is_open()){
           char s;
-          std::cout<<"Vous avez entrez "<<x<<std::endl;
-          printf("Press enter to continue\n");
+          std::cout<<"Vous avez entré "<<x<<std::endl;
+          printf("Appuyer sur ENTREE pour continuer\n");
           s=getchar();
           putchar(s);
           Entree = 2;
@@ -682,7 +682,7 @@ printf("\n");
 
 printf("\n");
   char s;
-  printf("Press enter to continue\n");
+  printf("Appuyer sur ENTREE pour continuer\n");
   s=getchar();
   putchar(s);
 
@@ -697,7 +697,7 @@ int sousMenu(){
   int Erreur = 0;
   while(Entree == 0){
     system("clear");
-    std::cout<<"Tester l'agorithme de tri"<<std::endl;
+    std::cout<<"Tester l'algorithme de tri"<<std::endl;
     std::cout<<"0\tQuitter"<<std::endl;
     std::cout<<"1\tHelp"<<std::endl;
     std::cout<<"2\tTest sur tableau random"<<std::endl;
@@ -757,7 +757,7 @@ int sousMenu(){
         std::cout<<""<<std::endl;
         sleep(2);
         char sh;
-        printf("Press enter to continue\n");
+        printf("Appuyer sur ENTREE pour continuer\n");
         sh=getchar();
         putchar(sh);
         break;  
@@ -792,7 +792,7 @@ void menuPrincipal(){
     std::cout<<"Menu principal"<<std::endl;
     std::cout<<"0\tQuitter"<<std::endl;
     std::cout<<"1\tHelp"<<std::endl;
-    std::cout<<"2\tTester l'agorithme de tri"<<std::endl;
+    std::cout<<"2\tTester l'algorithme de tri"<<std::endl;
     std::cout<<"3\tReset"<<std::endl;
 
     if(Erreur == 1){
@@ -846,7 +846,7 @@ void menuPrincipal(){
         std::cout<<""<<std::endl;
         sleep(2);
         char sh;
-        printf("Press enter to continue\n");
+        printf("Appuyer sur ENTREE pour continuer\n");
         sh=getchar();
         putchar(sh);
         break;  
@@ -893,14 +893,12 @@ menuPrincipal();
   cudaEvent_t startGPU, stopGPU;
   cudaEventCreate ( &startGPU );
   cudaEventCreate ( &stopGPU );
-
 //Alloc Array
 printf("Alloc Array\n");
   srand(time(NULL));
   int* T_cpu = (int*)malloc(n*sizeof(int));
   int* T_gpu = (int*)malloc(n*sizeof(int));
   int cpt=0;
-
 //init Array
 printf("\nInit Array\n");
   while (cpt<n){
@@ -909,7 +907,6 @@ printf("\nInit Array\n");
     cpt++;
   }
 printf("\n");
-
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
@@ -923,7 +920,6 @@ printf("\nCall sort GPU\n");
   cudaEventRecord(stopGPU);
 printf("Call cudaDeviceSynchronize\n");
   cudaDeviceSynchronize();
-
 //test tri ok?
 printf("\nTest tri\n");
   if(is_sorted(T_cpu, n)){
@@ -937,7 +933,6 @@ printf("Test egale\n");
   }else{
     printf("[error] T_cpu mal trie");   
   }
-
 //Time resuts
 printf("\nTime resuts\n");
   float millisecondsGPU = 0;
@@ -960,4 +955,3 @@ printf("\nTime resuts\n");
 // return 0
   return 0;
 }
-
