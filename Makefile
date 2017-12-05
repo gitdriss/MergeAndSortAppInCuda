@@ -13,10 +13,12 @@ CFLAGS= -std=c++11
 .PHONY: clean
 
 reset:
-	rm -f *.o bin/exe src/tmp.txt bin/exemple2.txt bin/exemple.txt data/price.txt data/kilometer.txt
+	rm -f *.o src/tmp.txt bin/exemple2.txt bin/exemple.txt data/price.txt data/kilometer.txt
+	rm -f -r bin
 
 clean:
-	rm -f *.o bin/exe src/tmp.txt
+	rm -f *.o src/tmp.txt
+	rm -f -r bin
 
 exec:
 	./script/genere
