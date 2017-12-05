@@ -12,24 +12,24 @@ MAIN 5 Polytech Paris UPMC
 
 Consignes
 ------------
-Implémenter l'algo de merge and sort (https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf) sur GPU + une utilisation de votre choix du merge and sort dans une application.
+Implémenter l'algorithme de merge and sort (https://www.cc.gatech.edu/~bader/papers/GPUMergePath-ICS2012.pdf) sur GPU + une utilisation de votre choix du merge and sort dans une application.
 
 Introduction
 ------------
-Naviguez dans les menus pour tester toutes nos implementations de tri merge and sort sur CPU et GPU.
+Naviguer dans les menus pour tester toutes nos implémentations de tri merge and sort sur CPU et GPU.
 Nos applications de l'algorithme de tri :
 - Test sur tableau random : génère aléatoirement un tableau d'entier et le tri
 - Lecture à partir d'un fichier : lit à partir d'un fichier un tableau d'entier et le tri.
   Le fichier doit être écrit de la meme manière que data/exemple.txt
   On peut utiliser script/genere.c pour en créer un nouveau.
 - Exemple d'application donnee automobile : des données automobiles sont lues et triées.
-  Il est essentiel de lancer le script de prétraitrement des données script/doc.py avant.
+  Il est essentiel de lancer le script de pré-traitrement des données script/doc.py avant.
 
 Bibliothèques
 ------------
 - Il faut posséder un environement avec GPU (compilateur nvcc).
 - Biblioteques C++
-- Python Panda
+- Python Pandas
 
 Utilisation
 ------------
