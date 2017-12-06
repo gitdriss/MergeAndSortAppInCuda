@@ -28,7 +28,7 @@
 #include <string>
 
 //---------------- DEFINE ----------------
-#define NB 1024
+#define NB 1
 #define NTPB 1024
 #define N NTPB*NB
 
@@ -181,7 +181,7 @@ printf("[%d] Call merge\n",tid);
 }
 
 // Fct Merge and sort pour GPU
-void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin, int blockSize)
+void mergeAndSortRecuGPU(int T[], int i_debut, int i_fin)
 {
   int n = i_fin - i_debut + 1;
 /*
@@ -199,8 +199,8 @@ printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize)
     int na = 1 + i_milieu - i_debut;
     int nb = i_fin - i_milieu;
     
-    mergeAndSortRecuGPU(T, i_debut, i_milieu, blockSize);
-    mergeAndSortRecuGPU(T, i_milieu+1, i_fin,blockSize);
+    mergeAndSortRecuGPU(T, i_debut, i_milieu);
+    mergeAndSortRecuGPU(T, i_milieu+1, i_fin);
   
     int *A, *B, *C;
     cudaMalloc(&A, na*sizeof(int));
@@ -221,8 +221,8 @@ printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize)
       printf("[Error] error2 %d (Cpu vers Gpu)\n",error2);
 
   //partitionning
-printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,NTPB,na,nb);
-    partitionningGPU<<<NB,NTPB>>>(A, na, B, nb, C);
+printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,get_pgcd(na, nb),na,nb);
+    partitionningGPU<<<NB,get_pgcd(na, nb)>>>(A, na, B, nb, C);
 
   //Gpu vers cpu
     int error3 = cudaMemcpy(T, C, n*sizeof(int), cudaMemcpyDeviceToHost);
@@ -384,7 +384,7 @@ printf("\n");
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
-  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1);
   cudaEventRecord(stopCPU);
 printf("\n");
 //sort GPU
@@ -499,7 +499,7 @@ printf("\n");
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
-  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1);
   cudaEventRecord(stopCPU);
 printf("\n");
 //sort GPU
@@ -637,7 +637,7 @@ printf("\n");
 //sort CPU
 printf("\nCall sort CPU\n");
   cudaEventRecord(startCPU);
-  mergeAndSortRecuGPU(T_gpu, 0, n-1, N);
+  mergeAndSortRecuGPU(T_gpu, 0, n-1);
   cudaEventRecord(stopCPU);
 printf("\n");
 //sort GPU
