@@ -33,7 +33,7 @@
 #define N NTPB*NB
 
 #define TAILLE 13
-#define GRAIN 100
+#define GRAIN 1000
 
 //---------------- FONCTIONS UTILITAIRES ----------------
 //Fct test tri
