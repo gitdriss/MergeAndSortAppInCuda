@@ -1,7 +1,7 @@
 target: ./bin/exe ./script/genere
 
 CC=nvcc
-CFLAGS= -std=c++11
+CFLAGS= -std=c++11 -lm
 
 ./bin/exe: src/main.cu
 	rm -f -r bin/

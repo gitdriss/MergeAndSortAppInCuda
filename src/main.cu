@@ -33,7 +33,7 @@
 #define N NTPB*NB
 
 #define TAILLE 13
-#define GRAIN 10
+#define GRAIN 12
 
 //---------------- FONCTIONS UTILITAIRES ----------------
 //Fct test tri
@@ -222,7 +222,7 @@ printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize)
 
   //partitionning
 printf("\nCall GPUpartitionning NB %d NTPB %d na %d nb %d\n",NB,get_pgcd(na, nb),na,nb);
-    partitionningGPU<<<NB,get_pgcd(na, nb)>>>(A, na, B, nb, C);
+    partitionningGPU<<<NB,max(get_pgcd(na, nb),2)>>>(A, na, B, nb, C);
 
   //Gpu vers cpu
     int error3 = cudaMemcpy(T, C, n*sizeof(int), cudaMemcpyDeviceToHost);
