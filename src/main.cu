@@ -192,7 +192,7 @@ printf("\n ------ i_debut %d i_fin %d blockSize %d \n",i_debut,i_fin, blockSize)
     }
   printf("\n");
 */
-  if (n < GRAIN){
+  if (2 < n && n < GRAIN){
 
     int i_milieu = i_debut + (i_fin - i_debut) / 2;
 
