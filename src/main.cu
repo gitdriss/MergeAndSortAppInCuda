@@ -176,7 +176,6 @@ __global__ void partitionningGPU(int* A, int na, int* B, int nb, int* C){
     bid = 0;
   }
 // merge
-printf("[%d] Call merge\n",tid);
   mergeGPU(A, na, aid, B, nb, bid, C, index, (na+nb)/(blockDim.x * gridDim.x));
 }
 
